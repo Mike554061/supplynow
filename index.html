@@ -3,241 +3,327 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1b27">
 <title>SupplyNow · Mike Cook</title>
 <meta name="description" content="Mike Cook, Chief Operating Officer at SupplyNow. Transportation-based solutions for reefer, frozen and dry freight out of Cleveland. Get an instant quote.">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap">
+<script>document.documentElement.classList.add("js")</script>
 <style>
-/* Layout: sticky top bar, split hero (message + dot card), proof strip, solutions grid,
-   hub map, process, credentials, FAQ, quote band, feedback form. Mobile gets a bottom action bar. */
+/* Design system from the SupplyNow company site (supplynow.vercel.app):
+   Barlow Condensed display + Source Sans 3 body, deep navy hero, teal brand, gold CTA. */
 :root{
-  --bg:#f5f8f8; --surface:#ffffff; --ink:#0e1b26; --ink-2:#4a5a67; --ink-3:#6d7c88;
-  --line:#dbe3e6; --brand:#00b4a6; --brand-ink:#0b766d; --tint:#e6f5f3;
+  --bg:#f5f8f8; --surface:#ffffff; --ink:#0e1b26; --ink-2:#4a5a67; --ink-3:#6d7c88; --line:#dbe3e6;
+  --brand:#00b4a6; --brand-ink:#0b766d; --tint:#e6f5f3;
   --hero:#0b1b27; --hero-2:#12293a; --hero-ink:#f2f6f8; --hero-ink-2:#a9bcc8;
   --gold-a:#e9c864; --gold-b:#b8860b; --gold-ink:#1a1205; --green:#1c8a4a;
   --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   --body:"Source Sans 3",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --radius:14px; --shadow:0 1px 2px rgba(14,27,38,.06),0 8px 24px rgba(14,27,38,.06);
+  color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0a1117; --surface:#111b23; --ink:#eef3f5; --ink-2:#a2b2bd; --ink-3:#7b8b97;
-  --line:#22303a; --brand-ink:#4fd6c9; --tint:#10282a; color-scheme:dark;
+  --bg:#0a1117; --surface:#111b23; --ink:#eef3f5; --ink-2:#a2b2bd; --ink-3:#7b8b97; --line:#22303a;
+  --brand-ink:#4fd6c9; --tint:#10282a; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark;
 }}
 :root[data-theme="dark"]{
-  --bg:#0a1117; --surface:#111b23; --ink:#eef3f5; --ink-2:#a2b2bd; --ink-3:#7b8b97;
-  --line:#22303a; --brand-ink:#4fd6c9; --tint:#10282a; color-scheme:dark;
+  --bg:#0a1117; --surface:#111b23; --ink:#eef3f5; --ink-2:#a2b2bd; --ink-3:#7b8b97; --line:#22303a;
+  --brand-ink:#4fd6c9; --tint:#10282a; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25); color-scheme:dark;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--body);-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-img,svg{max-width:100%}
-.wrap{width:100%;max-width:1120px;margin:0 auto;padding-inline:20px}
-h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;text-wrap:balance;letter-spacing:.005em}
-h2{font-size:clamp(30px,4.4vw,44px);font-weight:700}
-h3{font-size:24px;font-weight:700}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body);-webkit-font-smoothing:antialiased}
+img,svg,video,canvas{max-width:100%;display:block}
+a{color:var(--brand-ink);text-decoration-thickness:1px;text-underline-offset:3px}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;line-height:1.04;margin:0;letter-spacing:.01em;text-wrap:balance}
+h2{font-size:clamp(32px,4.4vw,50px);text-transform:uppercase}
+h3{font-size:24px}
 p{margin:0}
-.eyebrow{font:700 13px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-ink);margin-bottom:12px}
-.lede{color:var(--ink-2);max-width:60ch;margin-top:14px}
-section{padding-block:64px}
+button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--brand);outline-offset:2px;border-radius:6px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+.section{padding-block:clamp(56px,8vw,104px)}
+.section.alt{background:var(--surface);border-block:1px solid var(--line)}
+.section.dark{background:var(--hero);color:var(--hero-ink)}
+.section.dark .lede{color:var(--hero-ink-2)}
+.eyebrow{font:700 13px/1.2 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--brand-ink);margin-bottom:12px}
+.dark .eyebrow,.hero .eyebrow,.glass .eyebrow{color:var(--brand)}
+.lede{color:var(--ink-2);font-size:19px;max-width:62ch;margin-top:14px}
+.head{max-width:760px;margin-bottom:40px}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:10px;
-  font:700 16px/1 var(--body);border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
-.btn.gold{background:linear-gradient(135deg,var(--gold-a),var(--gold-b));border-color:transparent;color:var(--gold-ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:10px;
+  font-weight:700;font-size:16px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.gold{background:linear-gradient(180deg,var(--gold-a),var(--gold-b));color:var(--gold-ink);box-shadow:0 6px 18px rgba(184,134,11,.28)}
+.btn.teal{background:var(--brand);color:#04201d}
 .btn.ghost{background:transparent;border-color:rgba(255,255,255,.35);color:var(--hero-ink)}
-.btn:active{transform:translateY(1px)}
+.btn.line{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn.block{width:100%}
+.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
 
-/* top bar */
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hero);color:var(--hero-ink);border-bottom:1px solid rgba(255,255,255,.08)}
-.bar .wrap{display:flex;align-items:center;gap:20px;min-height:60px}
-.logo{display:flex;align-items:center}
-.logo img{display:block;height:28px;width:auto}
-.bar nav{display:flex;gap:22px;margin-left:auto;font-size:15px;font-weight:600;color:var(--hero-ink-2)}
-.bar nav a:hover{color:#fff}
-.bar .btn{min-height:38px;padding:0 14px;font-size:14px}
+/* utility bar + header */
+.utility{background:#071219;color:var(--hero-ink-2);font-size:14px}
+.utility .wrap{display:flex;gap:18px;justify-content:flex-end;align-items:center;min-height:34px;flex-wrap:wrap}
+.utility a{color:var(--hero-ink-2);text-decoration:none}
+.utility a:hover{color:#fff}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--hero);color:var(--hero-ink);border-bottom:1px solid rgba(255,255,255,.08)}
+.bar .wrap{display:flex;align-items:center;gap:16px;min-height:68px}
+.logo{flex:none}
+.logo img{height:26px;width:auto;max-width:none}
+.nav{display:flex;gap:4px;margin:0 0 0 auto;padding:0;align-items:center}
+.nav>li{list-style:none;position:relative}
+.nav .top{display:inline-flex;align-items:center;gap:6px;padding:10px 12px;font-weight:600;color:var(--hero-ink-2);text-decoration:none;border-radius:8px}
+.nav .top:hover,.nav li:focus-within>.top{color:#fff;background:rgba(255,255,255,.06)}
+.mega{position:absolute;top:calc(100% + 6px);left:50%;transform:translate(-50%,6px);width:min(620px,92vw);background:var(--surface);color:var(--ink);
+  border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 24px 60px rgba(0,0,0,.25);padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:6px;
+  opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility .18s}
+.nav li:hover>.mega,.nav li:focus-within>.mega{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.mega a{display:block;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--ink)}
+.mega a:hover{background:var(--tint)}
+.mega b{display:block;font-size:16px}
+.mega span{display:block;font-size:14px;color:var(--ink-3);line-height:1.35}
+.bar .cta{margin-left:8px;min-height:42px;padding:8px 16px}
+.menu-btn{display:none;margin-left:auto;background:none;border:1.5px solid rgba(255,255,255,.3);color:#fff;border-radius:10px;min-height:42px;padding:0 14px;font-weight:700;cursor:pointer}
+.drawer{display:none}
+@media (max-width:960px){
+  .nav,.bar .cta{display:none}
+  .menu-btn{display:inline-flex;align-items:center}
+  .drawer.open{display:block;background:var(--hero);border-top:1px solid rgba(255,255,255,.08);padding:12px 0 20px}
+  .drawer a{display:block;padding:12px 16px;color:var(--hero-ink);text-decoration:none;font-weight:600}
+  .drawer .group{color:var(--brand);font:700 12px var(--body);letter-spacing:.14em;text-transform:uppercase;padding:14px 16px 4px}
+  .utility .wrap{justify-content:center}
+}
 
 /* hero */
-.hero{position:relative;isolation:isolate;overflow:hidden;background:var(--hero);color:var(--hero-ink);padding-block:88px 200px}
+.hero{position:relative;isolation:isolate;overflow:hidden;background:var(--hero);color:var(--hero-ink);padding-block:96px 120px;min-height:640px}
 .hero-media{position:absolute;inset:0;z-index:-2}
-.hero-media canvas,.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.hero-media video{opacity:0;transition:opacity .8s ease}
+.hero-media canvas,.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-media video{opacity:0;transition:opacity .9s ease}
 .hero-media video.on{opacity:1}
-.hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(6,13,19,.86) 0%,rgba(6,13,19,.55) 42%,rgba(6,13,19,.12) 100%),linear-gradient(180deg,rgba(6,13,19,.5) 0%,rgba(6,13,19,0) 40%)}
-.hero .grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:48px;align-items:center}
-.hero h1{font-size:clamp(42px,7vw,76px);font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+.hero-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(6,13,19,.9) 0%,rgba(6,13,19,.6) 45%,rgba(6,13,19,.15) 100%),linear-gradient(180deg,rgba(6,13,19,.5) 0%,rgba(6,13,19,0) 40%)}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:center}
+.hero h1{font-size:clamp(44px,7.2vw,84px);text-transform:uppercase}
 .hero h1 em{font-style:normal;color:var(--brand)}
-.hero .sub{margin-top:18px;color:var(--hero-ink-2);font-size:19px;max-width:52ch}
-.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.hero .eyebrow{color:var(--brand)}
-.hero .quiet{margin-top:20px;font-size:14px;color:var(--hero-ink-2)}
+.hero .sub{margin-top:18px;color:var(--hero-ink-2);font-size:20px;max-width:54ch}
+.hero .btns{margin-top:28px}
+.proof{display:flex;flex-wrap:wrap;gap:8px 18px;margin:26px 0 0;font-size:15px;color:var(--hero-ink-2);padding:0;list-style:none}
+.proof li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--brand);margin-right:8px;animation:ping 2.4s infinite}
+.hero-caption{position:absolute;right:16px;bottom:12px;font-size:12px;color:rgba(255,255,255,.45)}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(0,180,166,.55)}80%,100%{box-shadow:0 0 0 10px rgba(0,180,166,0)}}
 
-/* dot card */
-.card{background:var(--surface);color:var(--ink);border-radius:18px;padding:22px;box-shadow:0 18px 50px rgba(0,0,0,.35)}
-.card .who{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.avatar{flex:none;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#4c8dff);color:#fff;display:grid;place-items:center;font:700 26px/1 var(--display)}
-.card .who b{display:block;font:700 26px/1.05 var(--display)}
-.card .who span{font-size:14px;color:var(--ink-2)}
-.connect{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.connect a{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border-radius:10px;background:var(--tint);color:var(--brand-ink);font-weight:700;font-size:15px}
+/* glass connect card */
+.glass{background:rgba(8,18,26,.62);color:var(--hero-ink);border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 50px rgba(0,0,0,.4);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:18px;padding:24px}
+.glass h2{font-size:30px}
+.who{display:flex;align-items:center;gap:14px;margin:18px 0}
+.avatar{flex:none;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,var(--brand),#4c8dff);color:#fff;display:grid;place-items:center;font:700 24px/1 var(--display)}
+.who b{display:block;font:700 24px/1.05 var(--display)}
+.who span{font-size:14px;color:var(--hero-ink-2)}
+.connect{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.connect a{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border-radius:10px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);color:#bff3ee;font-weight:700;text-decoration:none}
+.connect a:hover{background:rgba(255,255,255,.12)}
 .connect svg{flex:none;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.glass .fine{margin-top:14px;font-size:14px;color:var(--hero-ink-2)}
 
-/* hero card: frosted glass so the scene shows through */
-.hero .card{background:rgba(8,18,26,.58);color:var(--hero-ink);border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 50px rgba(0,0,0,.4);
-  -webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2)}
-.hero .card .who span{color:var(--hero-ink-2)}
-.hero .card .eyebrow{margin-bottom:14px}
-.hero .connect a{background:rgba(255,255,255,.08);color:#bff3ee}
-.hero .connect a:hover{background:rgba(255,255,255,.14)}
+/* stats band */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line);background:var(--surface)}
+.stats div{padding:26px 20px;border-right:1px solid var(--line)}
+.stats div:last-child{border-right:0}
+.stats b{display:block;font:700 40px/1 var(--display);color:var(--ink)}
+.stats span{color:var(--ink-2);font-size:15px}
 
-/* proof strip */
-.strip{background:var(--surface);border-bottom:1px solid var(--line)}
-.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.stat{padding:22px 16px;border-left:1px solid var(--line)}
-.stat:first-child{border-left:0;padding-left:0}
-.stat b{display:block;font:700 40px/1 var(--display);color:var(--brand-ink)}
-.stat span{font-size:14.5px;color:var(--ink-2)}
+/* cards and grids */
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+.card h3{margin:14px 0 8px}
+.card p{color:var(--ink-2)}
+.card .more{display:inline-block;margin-top:14px;font-weight:700;color:var(--brand-ink);text-decoration:none}
+.card .more:hover{text-decoration:underline}
+.icon{width:52px;height:52px;border-radius:12px;background:var(--tint);color:var(--brand-ink);display:grid;place-items:center}
+.icon svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
-/* solutions */
-.sol{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:32px}
-.sol article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px}
-.sol .ic{width:44px;height:44px;border-radius:10px;background:var(--tint);color:var(--brand-ink);display:grid;place-items:center}
-.sol .ic svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.sol p{color:var(--ink-2);font-size:16px}
-.sol a.more{margin-top:auto;padding-top:6px;font-weight:700;color:var(--brand-ink);font-size:15px}
+/* split feature */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.split.flip>:first-child{order:2}
+.split.top{align-items:start}
+.checks{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.checks li{padding-left:30px;position:relative;color:var(--ink-2)}
+.checks li::before{content:"";position:absolute;left:0;top:5px;width:18px;height:18px;border-radius:50%;background:var(--brand) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%2304201d' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
 
-/* lanes */
-.lanes{background:var(--surface);border-block:1px solid var(--line)}
-.lanes .grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:40px;align-items:center;margin-top:28px}
-.map{width:100%;height:auto;display:block;background:var(--bg);border:1px solid var(--line);border-radius:14px}
-.map .grid-l{stroke:var(--line);stroke-width:1}
-.map .spoke{stroke:var(--brand);stroke-width:2;stroke-dasharray:5 6;opacity:.85}
-.map .hub{fill:var(--surface);stroke:var(--brand-ink);stroke-width:3}
-.map .home{fill:var(--brand);stroke:var(--surface);stroke-width:3}
-.map text{fill:var(--ink);font:700 15px var(--body)}
-.map text.cap{fill:var(--brand-ink);font:700 11px var(--body);letter-spacing:.12em}
-.map text.mi{fill:var(--ink-3);font:600 12px var(--body)}
-.hubs{list-style:none;margin:0;padding:0;display:grid;gap:0}
-.hubs li{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-weight:600}
-.hubs li:first-child{padding-top:0}
-.hubs span{color:var(--ink-3);font-weight:400;font-variant-numeric:tabular-nums}
-.hubs li.home{color:var(--brand-ink)}
+/* hub list */
+.hubs{list-style:none;margin:24px 0 0;padding:0;display:grid}
+.hubs li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-weight:600}
+.hubs li span{color:var(--ink-3);font-weight:400;font-variant-numeric:tabular-nums}
+.hubs li.home,.hubs li.home span{color:var(--brand-ink);font-weight:700}
 .fine{font-size:13.5px;color:var(--ink-3);margin-top:12px}
 
-/* tracking */
-.track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:32px}
-.track div{border-top:3px solid var(--brand);padding-top:14px}
-.track b{display:block;font:700 22px/1.1 var(--display);margin-bottom:6px}
-.track p{color:var(--ink-2);font-size:16px}
-
-/* process */
-.proc{background:var(--hero);color:var(--hero-ink)}
-.proc .eyebrow{color:var(--brand)}
-.proc .lede{color:var(--hero-ink-2)}
-.steps{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;counter-reset:s}
-.steps li{counter-increment:s;background:var(--hero-2);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:20px}
-.steps li::before{content:"Step " counter(s);display:block;font:700 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--brand);margin-bottom:10px}
-.steps b{display:block;font:700 24px/1.05 var(--display);margin-bottom:6px}
+/* steps */
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;counter-reset:s}
+.steps li{counter-increment:s;background:var(--hero-2);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:22px}
+.steps li::before{content:counter(s,decimal-leading-zero);font:700 34px/1 var(--display);color:var(--brand);display:block;margin-bottom:12px}
+.steps h3{font-size:22px;margin-bottom:6px}
 .steps p{color:var(--hero-ink-2);font-size:16px}
 
 /* credentials */
-.cred{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;margin-top:28px}
-.kv{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:16px}
-.kv span{color:var(--ink-2)}
-.kv b{text-align:right;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-.cred .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.creds{padding:8px 24px}
+.krow{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px dashed var(--line);font-size:16px}
+.krow:last-child{border-bottom:0}
+.krow span{color:var(--ink-2)}
+.krow b{text-align:right;font-variant-numeric:tabular-nums}
 
 /* faq */
-.faq{max-width:780px;margin-top:28px}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;padding:18px 0;font-weight:700;font-size:18px}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:19px;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-size:24px;line-height:1;color:var(--brand-ink)}
-.faq details[open] summary::after{content:"−"}
-.faq details p{padding:0 0 18px;color:var(--ink-2)}
+.faq summary::after{content:"+";font:700 26px/1 var(--display);color:var(--brand-ink);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin-top:10px;color:var(--ink-2);max-width:72ch}
 
-/* quote band + feedback */
-.quote{background:var(--tint);border-top:4px solid var(--gold-b)}
-.qgrid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:start}
-.qcopy{position:sticky;top:calc(84px + env(safe-area-inset-top,0px))}
-.qlist{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px;font-weight:600}
-.qlist li{display:flex;gap:10px;align-items:baseline}
-.qlist li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--brand);transform:translateY(-2px)}
-.qalt{margin-top:22px;color:var(--ink-2)}
-.qalt a{color:var(--brand-ink);font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.qform{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+/* cta band */
+.ctaband{background:linear-gradient(120deg,#0b1b27 0%,#0f3a3d 100%);color:var(--hero-ink);border-radius:22px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:minmax(0,1.4fr) auto;gap:24px;align-items:center}
+.ctaband h2{font-size:clamp(30px,4vw,46px)}
+.ctaband p{color:var(--hero-ink-2);margin-top:10px}
+.ctaband .btns{margin-top:0}
+
+/* instant quote embed */
+.qcopy{position:sticky;top:96px}
+.qform{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
 .airtable-embed{display:block;width:100%;height:1180px;border:0;background:transparent}
 .qfall{margin:0;padding:12px 16px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-3)}
-.qfall a{color:var(--brand-ink);font-weight:700}
-.fb{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px;align-items:start}
-form{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
-label{display:block;font-size:14px;font-weight:600;color:var(--ink-2);margin:14px 0 6px}
-form>label:first-child{margin-top:0}
-select,textarea,input[type=text]{width:100%;padding:12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:16px}
-textarea{min-height:110px;resize:vertical}
-.stars{display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:4px}
-.stars input{position:absolute;opacity:0;pointer-events:none}
-.stars label{margin:0;font-size:32px;line-height:1;color:var(--line);cursor:pointer;padding:2px}
-.stars input:checked ~ label,.stars label:hover,.stars label:hover ~ label{color:#e0a800}
-.stars input:focus-visible + label{outline:3px solid var(--brand);border-radius:6px}
-form .btn{width:100%;margin-top:18px}
-.note{margin-top:10px;font-size:13.5px;color:var(--ink-3)}
-#thanks{display:none;margin-top:12px;color:var(--green);font-weight:700}
+.qfall a{font-weight:700}
 
-footer{background:var(--hero);color:var(--hero-ink-2);padding-block:36px calc(36px + 64px);font-size:15px}
-footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between}
-footer b{color:#fff}
-footer a{text-decoration:underline;text-underline-offset:3px}
+/* feedback form */
+.form{display:grid;gap:16px}
+.field{display:grid;gap:6px}
+.field label,.legend{font-weight:600;font-size:15px;color:var(--ink-2)}
+.field input,.field select,.field textarea{width:100%;min-height:46px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink)}
+.field textarea{min-height:110px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 3px rgba(0,180,166,.2)}
+.stars{position:relative;display:flex;flex-direction:row-reverse;justify-content:flex-end;gap:4px}
+.stars input{position:absolute;opacity:0;pointer-events:none;width:1px;min-height:0;padding:0}
+.stars label{font-size:32px;line-height:1;color:var(--line);cursor:pointer;padding:2px}
+.stars input:checked~label,.stars label:hover,.stars label:hover~label{color:#e0a800}
+.stars input:focus-visible+label{outline:3px solid var(--brand);border-radius:6px}
+.hint{font-size:13px;color:var(--ink-3)}
+#thanks{display:none;color:var(--green);font-weight:700}
 
-/* mobile action bar (dot-card style) */
+/* footer */
+footer.site{background:var(--hero);color:var(--hero-ink-2);padding-block:56px 96px;font-size:15px}
+footer.site .cols{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:32px}
+footer.site h4{color:#fff;font-size:18px;text-transform:uppercase;margin-bottom:12px}
+footer.site a{color:var(--hero-ink-2);text-decoration:none;display:block;padding:4px 0}
+footer.site a:hover{color:#fff}
+footer.site .legal{border-top:1px solid rgba(255,255,255,.08);margin-top:36px;padding-top:20px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;font-size:14px}
 .dock{display:none}
 
-@media (max-width:900px){
-  .hero .grid,.lanes .grid,.cred,.fb,.qgrid{grid-template-columns:minmax(0,1fr)}
+/* illustrations */
+.illo{width:100%;height:auto}
+.illo text{font-family:var(--body)}
+.illo .node{fill:var(--hero-2);stroke:rgba(255,255,255,.22)}
+.illo .spoke{stroke:var(--brand);stroke-width:2.5;fill:none;stroke-dasharray:500;stroke-dashoffset:500}
+.in .illo .spoke{animation:draw 1.6s ease forwards}
+.in .illo .spoke:nth-of-type(2){animation-delay:.15s}.in .illo .spoke:nth-of-type(3){animation-delay:.3s}
+.in .illo .spoke:nth-of-type(4){animation-delay:.45s}.in .illo .spoke:nth-of-type(5){animation-delay:.6s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.in .illo .pulse{animation:pulseR 2s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulseR{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(2.2)}}
+.illo .templine{stroke:var(--brand);stroke-width:3;fill:none;stroke-dasharray:900;stroke-dashoffset:900}
+.in .illo .templine{animation:draw 4s ease forwards}
+
+/* scroll reveal (hidden only once JS is confirmed) */
+.js [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.js [data-reveal].in{opacity:1;transform:none}
+[data-reveal="2"]{transition-delay:.1s}[data-reveal="3"]{transition-delay:.2s}[data-reveal="4"]{transition-delay:.3s}
+
+@media (max-width:960px){
+  .grid-3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero .grid{grid-template-columns:minmax(0,1fr)}
+  .split{grid-template-columns:minmax(0,1fr);gap:32px}
+  .split.flip>:first-child{order:0}
   .qcopy{position:static}
-  .sol,.track,.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .strip .wrap{grid-template-columns:repeat(2,1fr)}
-  .stat:nth-child(3){border-left:0;padding-left:0}
-  .bar nav{display:none}
-  .hero-shade{background:linear-gradient(180deg,rgba(6,13,19,.35) 0%,rgba(6,13,19,.82) 34%,rgba(6,13,19,.92) 100%)}
-  .bar .btn{margin-left:auto}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-@media (max-width:560px){
-  section{padding-block:48px}
-  .map text{font-size:23px}.map text.cap{font-size:15px}
-  .sol,.track,.steps{grid-template-columns:minmax(0,1fr)}
-  .hero{padding-block:44px 48px}
-  .logo img{height:22px}
+@media (max-width:760px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div:nth-child(2){border-right:0}
+  .stats div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .ctaband{grid-template-columns:minmax(0,1fr)}
+  footer.site .cols{grid-template-columns:1fr 1fr}
+  .dock{display:grid;grid-template-columns:1fr 1fr 1.3fr;gap:10px;position:fixed;inset:auto 0 0 0;z-index:50;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--hero);border-top:1px solid rgba(255,255,255,.1)}
+  .dock .btn{min-height:46px;padding:10px 12px}
+}
+@media (max-width:640px){
+  .grid-3,.grid-2{grid-template-columns:minmax(0,1fr)}
+  .hero{padding-block:56px 72px;min-height:0}
+  .hero-shade{background:linear-gradient(180deg,rgba(6,13,19,.45) 0%,rgba(6,13,19,.88) 40%)}
   .airtable-embed{height:1400px}
-  .dock{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:30;
-    padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--hero);border-top:1px solid rgba(255,255,255,.1)}
-  .dock a{display:flex;align-items:center;justify-content:center;min-height:46px;border-radius:10px;font-weight:700;color:var(--hero-ink);border:1.5px solid rgba(255,255,255,.3)}
-  .dock a.gold{background:linear-gradient(135deg,var(--gold-a),var(--gold-b));color:var(--gold-ink);border-color:transparent}
+  .hubmap text{font-size:19px}.hubmap text.cap{display:none}
+  .stats b{font-size:32px}
 }
-@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media (max-width:560px){.steps{grid-template-columns:minmax(0,1fr)}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .js [data-reveal]{opacity:1;transform:none}
+  .illo .spoke,.illo .templine{stroke-dashoffset:0}
+}
 </style>
 </head>
 <body>
+<a class="sr-only" href="#main">Skip to content</a>
+
+<div class="utility">
+  <div class="wrap">
+    <a href="https://www.linkedin.com/in/michael-cook-98550b146" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:mike@supplynow.org">mike@supplynow.org</a>
+    <a href="tel:+14405542222">440-554-2222</a>
+  </div>
+</div>
 
 <header class="bar">
   <div class="wrap">
-    <a class="logo" href="#top"><img src="assets/supplynow-wordmark-light.png" alt="SupplyNow" width="438" height="67"></a>
-    <nav aria-label="Sections">
-      <a href="#solutions">Solutions</a><a href="#lanes">Lanes</a><a href="#how">How it works</a><a href="#carrier">Carrier packet</a><a href="#faq">FAQ</a><a href="#feedback">Feedback</a>
-    </nav>
-    <a class="btn gold" href="tel:+14405542222">Talk to a specialist</a>
+    <a class="logo" href="#main" aria-label="SupplyNow home"><img src="assets/supplynow-wordmark-light.png" alt="SupplyNow" width="438" height="67"></a>
+    <ul class="nav" aria-label="Main">
+      <li>
+        <a class="top" href="#solutions">Solutions ▾</a>
+        <div class="mega">
+          <a href="#solutions"><b>Refrigerated &amp; frozen</b><span>Reefer trucks with live temperature control and logging.</span></a>
+          <a href="#solutions"><b>Dry freight</b><span>16′–26′ box trucks with lift gate and load bars.</span></a>
+          <a href="#solutions"><b>Expedited &amp; small drops</b><span>Cargo and sprinter vans for time-critical freight.</span></a>
+          <a href="#solutions"><b>Recurring &amp; dedicated</b><span>The same equipment and a driver your team knows.</span></a>
+          <a href="#solutions"><b>First &amp; mid mile</b><span>Producer pickups, no-touch and drop-trailer moves.</span></a>
+          <a href="#solutions"><b>Capacity partners</b><span>Partner carriers for surge and multi-modal needs.</span></a>
+        </div>
+      </li>
+      <li><a class="top" href="#lanes">Lanes</a></li>
+      <li><a class="top" href="#how">How it works</a></li>
+      <li><a class="top" href="#carrier">Carrier packet</a></li>
+      <li><a class="top" href="#faq">FAQ</a></li>
+      <li><a class="top" href="#feedback">Feedback</a></li>
+    </ul>
+    <a class="btn gold cta" href="tel:+14405542222">Talk to a specialist</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" id="menu-btn">Menu</button>
   </div>
+  <nav id="drawer" class="drawer" aria-label="Mobile">
+    <div class="group">On this page</div>
+    <a href="#solutions">Solutions</a><a href="#lanes">Lanes &amp; coverage</a><a href="#how">How it works</a>
+    <a href="#carrier">Carrier packet</a><a href="#faq">FAQ</a><a href="#quote">Instant quote</a><a href="#feedback">Feedback</a>
+    <div class="group">Talk to us</div>
+    <a href="tel:+14405542222">Call 440-554-2222</a>
+  </nav>
 </header>
 
-<main id="top">
+<main id="main">
 
-<div class="hero">
+<section class="hero">
   <div class="hero-media" aria-hidden="true">
     <canvas id="hero-canvas"></canvas>
-    <!-- To use a real clip: add assets/hero.mp4 (muted, under ~8 MB) and set data-src="assets/hero.mp4" -->
-    <video id="hero-video" muted loop playsinline preload="none" data-src=""></video>
+    <video id="hero-video" muted loop playsinline preload="none"></video>
   </div>
   <div class="hero-shade" aria-hidden="true"></div>
   <div class="wrap grid">
@@ -245,15 +331,20 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <p class="eyebrow">Transportation-based solutions · Cleveland, OH</p>
       <h1>Your freight, on <em>our</em> trucks, with our drivers.</h1>
       <p class="sub">SupplyNow runs refrigerated, frozen and dry freight with live GPS and temperature on every load. Home base is Cleveland, with hubs in Chicago, Detroit, Columbus, Pittsburgh and Wilkes-Barre.</p>
-      <div class="ctas">
+      <div class="btns">
         <a class="btn gold" href="tel:+14405542222">Talk to a specialist today</a>
         <a class="btn ghost" href="#solutions">See solutions</a>
       </div>
-      <p class="quiet">Asset-based. No broker daisy-chain.</p>
+      <ul class="proof">
+        <li>Asset-based</li>
+        <li>No broker daisy-chain</li>
+        <li>Live GPS</li>
+        <li>Live temperature</li>
+      </ul>
     </div>
 
-    <aside class="card" id="connect" aria-label="Connect with Mike Cook">
-      <p class="eyebrow">Connect</p>
+    <aside class="glass" id="connect" aria-label="Connect with Mike Cook">
+      <h2>Connect</h2>
       <div class="who">
         <div class="avatar" aria-hidden="true">MC</div>
         <div><b>Mike Cook</b><span>Chief Operating Officer, SupplyNow</span></div>
@@ -266,174 +357,206 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       </div>
     </aside>
   </div>
+  <span class="hero-caption">Live network · illustrative</span>
+</section>
+
+<div class="stats">
+  <div><b>3</b><span>equipment types: reefer, dry box, sprinter van</span></div>
+  <div><b>5</b><span>regional hubs around Cleveland</span></div>
+  <div><b>100%</b><span>of loads with live GPS and temperature</span></div>
+  <div><b>MC 1660872</b><span>USDOT 3976910, active authority</span></div>
 </div>
 
-<div class="strip">
+<section class="section alt" id="solutions">
   <div class="wrap">
-    <div class="stat"><b>3</b><span>equipment types: reefer, dry box, sprinter van</span></div>
-    <div class="stat"><b>5</b><span>regional hubs around Cleveland</span></div>
-    <div class="stat"><b>Live</b><span>GPS and temperature on every load</span></div>
-    <div class="stat"><b>MC 1660872</b><span>USDOT 3976910, active authority</span></div>
-  </div>
-</div>
-
-<section id="solutions">
-  <div class="wrap">
-    <p class="eyebrow">Solutions</p>
-    <h2>One carrier, built around what you ship</h2>
-    <p class="lede">Pick the branch that fits your freight. Each one starts with the same instant quote.</p>
-
-    <div class="sol">
-      <article>
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11M9 3.5l3 2.5 3-2.5M9 20.5l3-2.5 3 2.5"/></svg></div>
+    <div class="head" data-reveal>
+      <p class="eyebrow">Solutions</p>
+      <h2>One carrier, built around what you ship</h2>
+      <p class="lede">Pick the branch that fits your freight. Each one starts with the same instant quote.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card" data-reveal="1">
+        <span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M13 19V6a3 3 0 0 1 6 0v13a5 5 0 1 1-6 0z"/><path d="M16 11v10"/><path d="M23 8h4M23 12h3M23 16h4"/></svg></span>
         <h3>Refrigerated &amp; frozen</h3>
         <p>Reefer trucks with live temperature control and logging. Frozen, refrigerated and ambient, full or partial loads.</p>
         <a class="more" href="#quote">Quote a reefer load →</a>
-      </article>
-      <article>
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4zM3 7l9 4 9-4M12 11v10"/></svg></div>
+      </div>
+      <div class="card" data-reveal="2">
+        <span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="8" width="20" height="13" rx="1"/><path d="M22 12h4l4 4v5h-8"/><circle cx="8" cy="23.5" r="2.3"/><circle cx="25" cy="23.5" r="2.3"/><path d="M6 12h4M6 16h8"/></svg></span>
         <h3>Dry freight</h3>
         <p>Dry box trucks from 16′ to 26′ with lift gate, pallet jack and load bars. Palletized or floor-loaded.</p>
         <a class="more" href="#quote">Quote a dry load →</a>
-      </article>
-      <article>
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
+      </div>
+      <div class="card" data-reveal="3">
+        <span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 21V10h14v11M17 14h6l4 4v3h-3"/><circle cx="9" cy="23" r="2.5"/><circle cx="22" cy="23" r="2.5"/><path d="M26 6l2 2-2 2M20 8h8"/></svg></span>
         <h3>Expedited &amp; small drops</h3>
         <p>Cargo and sprinter vans for time-critical freight and small, frequent deliveries.</p>
         <a class="more" href="#quote">Quote an expedited run →</a>
-      </article>
-      <article>
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5l2 2M20 4v5h-5M20 12a8 8 0 0 1-14 5l-2-2M4 20v-5h5"/></svg></div>
+      </div>
+      <div class="card" data-reveal="1">
+        <span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 12a10 10 0 0 1 18-3M26 20a10 10 0 0 1-18 3"/><path d="M24 4v5h-5M8 28v-5h5"/><circle cx="16" cy="16" r="2"/></svg></span>
         <h3>Recurring &amp; dedicated</h3>
         <p>The same equipment and a driver your team knows. Scheduled runs, multi-stop routes and white-glove handling.</p>
         <a class="more" href="mailto:mike@supplynow.org?subject=Recurring%20freight">Talk through a schedule →</a>
-      </article>
-      <article>
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 17h13V6H3zM16 10h4l1 3v4h-5M7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg></div>
+      </div>
+      <div class="card" data-reveal="2">
+        <span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="6" width="8" height="8" rx="1"/><rect x="22" y="18" width="8" height="8" rx="1"/><path d="M10 10h6a3 3 0 0 1 3 3v6a3 3 0 0 0 3 3"/><path d="M19 19l3 3 3-3"/></svg></span>
         <h3>First &amp; mid mile</h3>
         <p>Producer pickups and no-touch or drop-trailer moves that get product to the next leg of its trip.</p>
         <a class="more" href="mailto:mike@supplynow.org?subject=First%20and%20mid%20mile">Ask about your lane →</a>
-      </article>
-      <article>
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-3 4 6 3-3h4M3 6h18M3 18h18"/></svg></div>
+      </div>
+      <div class="card" data-reveal="3">
+        <span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="10" r="4"/><circle cx="22" cy="12" r="3"/><path d="M3 26a8 8 0 0 1 16 0M18 26a6 6 0 0 1 11-3"/></svg></span>
         <h3>Capacity partners</h3>
         <p>Need more trucks than one fleet can field? We work with partner carriers to cover surge and multi-modal needs.</p>
         <a class="more" href="mailto:mike@supplynow.org?subject=Capacity%20partnership">Start a conversation →</a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="lanes" id="lanes">
-  <div class="wrap">
-    <p class="eyebrow">Lanes &amp; coverage</p>
-    <h2>We run everywhere. Cleveland is home base.</h2>
-    <p class="lede">Five hubs anchor our network. If your lane isn't on the map, ask. Odds are we run it.</p>
-
-    <div class="grid">
-      
-      <svg class="map" viewBox="0 0 640 300" role="img" aria-label="Schematic map: Cleveland home base with spokes to Chicago, Detroit, Columbus, Pittsburgh and Wilkes-Barre">
-      <line class="grid-l" x1="40" y1="0" x2="40" y2="300"/>
-      <line class="grid-l" x1="120" y1="0" x2="120" y2="300"/>
-      <line class="grid-l" x1="200" y1="0" x2="200" y2="300"/>
-      <line class="grid-l" x1="280" y1="0" x2="280" y2="300"/>
-      <line class="grid-l" x1="360" y1="0" x2="360" y2="300"/>
-      <line class="grid-l" x1="440" y1="0" x2="440" y2="300"/>
-      <line class="grid-l" x1="520" y1="0" x2="520" y2="300"/>
-      <line class="grid-l" x1="600" y1="0" x2="600" y2="300"/>
-      <line class="grid-l" x1="0" y1="30" x2="640" y2="30"/>
-      <line class="grid-l" x1="0" y1="90" x2="640" y2="90"/>
-      <line class="grid-l" x1="0" y1="150" x2="640" y2="150"/>
-      <line class="grid-l" x1="0" y1="210" x2="640" y2="210"/>
-      <line class="grid-l" x1="0" y1="270" x2="640" y2="270"/>
-      <line class="spoke" x1="317" y1="130" x2="80" y2="109"/>
-      <line class="spoke" x1="317" y1="130" x2="263" y2="86"/>
-      <line class="spoke" x1="317" y1="130" x2="265" y2="211"/>
-      <line class="spoke" x1="317" y1="130" x2="385" y2="186"/>
-      <line class="spoke" x1="317" y1="130" x2="550" y2="143"/>
-      <circle class="hub" cx="80" cy="109" r="8"/>
-      <text x="80" y="95" text-anchor="middle">Chicago</text>
-      <circle class="hub" cx="263" cy="86" r="8"/>
-      <text x="263" y="72" text-anchor="middle">Detroit</text>
-      <circle class="hub" cx="265" cy="211" r="8"/>
-      <text x="265" y="239" text-anchor="middle">Columbus</text>
-      <circle class="hub" cx="385" cy="186" r="8"/>
-      <text x="385" y="214" text-anchor="middle">Pittsburgh</text>
-      <circle class="hub" cx="550" cy="143" r="8"/>
-      <text x="550" y="129" text-anchor="middle">Wilkes-Barre</text>
-      <circle class="home" cx="317" cy="130" r="12"/>
-      <text class="cap" x="335" y="104">HOME BASE</text><text x="335" y="120">Cleveland</text>
-      </svg>
-
-      <div>
-        <ul class="hubs">
-          <li class="home"><span style="color:inherit;font-weight:700">Cleveland, OH</span><span style="color:inherit">Home base</span></li>
-          <li>Detroit, MI <span>~170 mi</span></li>
-          <li>Columbus, OH <span>~140 mi</span></li>
-          <li>Pittsburgh, PA <span>~130 mi</span></li>
-          <li>Chicago, IL <span>~345 mi</span></li>
-          <li>Wilkes-Barre, PA <span>~330 mi</span></li>
-        </ul>
-        <p class="fine">Approximate road miles from Cleveland. Map is schematic.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="visibility">
-  <div class="wrap">
-    <p class="eyebrow">Visibility</p>
-    <h2>You see the freight the whole way</h2>
-    <div class="track">
-      <div><b>Live GPS</b><p>A tracking link is shared at pickup. Watch the truck in real time.</p></div>
-      <div><b>Live temperature</b><p>Reefer temperature is monitored and logged for the whole trip.</p></div>
-      <div><b>On-time windows</b><p>Built around retail and distribution center appointments.</p></div>
-      <div><b>Digital POD</b><p>Proof of delivery lands in your inbox as soon as it's signed.</p></div>
+<section class="section" id="lanes">
+  <div class="wrap split">
+    <div data-reveal>
+      <p class="eyebrow">Lanes &amp; coverage</p>
+      <h2>We run everywhere. Cleveland is home base.</h2>
+      <p class="lede">Five hubs anchor our network. If your lane isn't on the map, ask. Odds are we run it.</p>
+      <ul class="hubs">
+        <li class="home">Cleveland, OH <span>Home base</span></li>
+        <li>Detroit, MI <span>~170 mi</span></li>
+        <li>Columbus, OH <span>~140 mi</span></li>
+        <li>Pittsburgh, PA <span>~130 mi</span></li>
+        <li>Chicago, IL <span>~345 mi</span></li>
+        <li>Wilkes-Barre, PA <span>~330 mi</span></li>
+      </ul>
+      <p class="fine">Approximate road miles from Cleveland. Map is schematic.</p>
+      <div class="btns"><a class="btn line" href="tel:+14405542222">Call to talk lanes</a></div>
+    </div>
+    <div data-reveal="2">
+      <svg class="illo hubmap" viewBox="0 0 640 300" role="img" aria-label="Schematic map: Cleveland home base with routes to Chicago, Detroit, Columbus, Pittsburgh and Wilkes-Barre">
+        <rect width="640" height="300" rx="16" fill="#0b1b27"/>
+        <g stroke="rgba(255,255,255,.05)"><path d="M40 0V300M120 0V300M200 0V300M280 0V300M360 0V300M440 0V300M520 0V300M600 0V300M0 30H640M0 90H640M0 150H640M0 210H640M0 270H640"/></g>
+        <path class="spoke" d="M317 130L80 109"/>
+        <path class="spoke" d="M317 130L263 86"/>
+        <path class="spoke" d="M317 130L265 211"/>
+        <path class="spoke" d="M317 130L385 186"/>
+        <path class="spoke" d="M317 130L550 143"/>
+        <g fill="#f2f6f8" font-size="15" font-weight="700" text-anchor="middle">
+          <circle class="node" cx="80" cy="109" r="8" stroke-width="2"/><text x="80" y="95">Chicago</text>
+          <circle class="node" cx="263" cy="86" r="8" stroke-width="2"/><text x="263" y="72">Detroit</text>
+          <circle class="node" cx="265" cy="211" r="8" stroke-width="2"/><text x="265" y="239">Columbus</text>
+          <circle class="node" cx="385" cy="186" r="8" stroke-width="2"/><text x="385" y="214">Pittsburgh</text>
+          <circle class="node" cx="550" cy="143" r="8" stroke-width="2"/><text x="550" y="129">Wilkes-Barre</text>
+        </g>
+        <circle cx="317" cy="130" r="11" fill="#00b4a6"/>
+        <circle cx="317" cy="130" r="11" fill="none" stroke="#00b4a6" stroke-width="2" class="pulse"/>
+        <text class="cap" x="335" y="104" fill="#00b4a6" font-size="11" font-weight="700" letter-spacing="1.3">HOME BASE</text>
+        <text x="335" y="120" fill="#f2f6f8" font-size="15" font-weight="700">Cleveland</text>
+      </svg>
     </div>
   </div>
 </section>
 
-<section class="proc" id="how">
+<section class="section alt" id="visibility">
+  <div class="wrap split">
+    <div data-reveal>
+      <p class="eyebrow">Visibility</p>
+      <h2>You see the freight the whole way</h2>
+      <div class="grid-2" style="margin-top:28px">
+        <div class="card"><span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="9"/><circle cx="16" cy="16" r="3"/><path d="M16 2v5M16 25v5M2 16h5M25 16h5"/></svg></span><h3>Live GPS</h3><p>A tracking link is shared at pickup. Watch the truck in real time.</p></div>
+        <div class="card"><span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M13 19V6a3 3 0 0 1 6 0v13a5 5 0 1 1-6 0z"/><path d="M16 11v10"/><path d="M23 8h4M23 12h3M23 16h4"/></svg></span><h3>Live temperature</h3><p>Reefer temperature is monitored and logged for the whole trip.</p></div>
+        <div class="card"><span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg></span><h3>On-time windows</h3><p>Built around retail and distribution center appointments.</p></div>
+        <div class="card"><span class="icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 3h12l6 6v20H8z"/><path d="M20 3v6h6M12 19l3 3 6-7"/></svg></span><h3>Digital POD</h3><p>Proof of delivery lands in your inbox as soon as it's signed.</p></div>
+      </div>
+    </div>
+    <div data-reveal="2">
+      <svg class="illo" viewBox="0 0 500 300" role="img" aria-label="Live GPS position and temperature log for a load in transit">
+        <rect width="500" height="300" rx="16" fill="#0b1b27"/>
+        <g stroke="rgba(255,255,255,.05)"><path d="M44 0V200M88 0V200M132 0V200M176 0V200M220 0V200M264 0V200M308 0V200M352 0V200M396 0V200M440 0V200M484 0V200M0 44H500M0 88H500M0 132H500M0 176H500"/></g>
+        <path d="M30 150 C 120 50, 210 200, 300 100 S 440 50, 470 110" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="6" stroke-linecap="round"/>
+        <path d="M30 150 C 120 50, 210 200, 300 100 S 440 50, 470 110" fill="none" stroke="#00b4a6" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+        <circle cx="30" cy="150" r="6" fill="#e9c864"/>
+        <circle cx="470" cy="110" r="6" fill="#e9c864"/>
+        <g>
+          <circle r="14" fill="none" stroke="#00b4a6" stroke-width="2" class="pulse"/>
+          <circle r="6" fill="#00b4a6"/>
+          <rect x="12" y="-30" width="118" height="22" rx="11" fill="rgba(6,13,19,.9)" stroke="#00b4a6"/>
+          <text x="22" y="-15" fill="#bff3ee" font-size="11" font-weight="700">LIVE · 34.1°F · ON TIME</text>
+          <animateMotion dur="12s" repeatCount="indefinite" path="M30 150 C 120 50, 210 200, 300 100 S 440 50, 470 110"/>
+        </g>
+        <rect x="0" y="200" width="500" height="100" fill="#0e2230"/>
+        <text x="24" y="224" fill="#f2f6f8" font-size="13" font-weight="700">Reefer temperature</text>
+        <text x="476" y="224" text-anchor="end" fill="#a9bcc8" font-size="12" font-weight="600">set point 34°F · logged live</text>
+        <rect x="30" y="250" width="440" height="30" fill="rgba(0,180,166,.08)"/>
+        <path class="templine" d="M30 268 L70 266 L110 267 L150 265 L190 268 L230 266 L270 267 L310 264 L350 266 L390 265 L430 267 L470 266"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section dark" id="how">
   <div class="wrap">
-    <p class="eyebrow">How it works</p>
-    <h2>From quote to delivered</h2>
-    <p class="lede">Four steps, one point of contact.</p>
+    <div class="head" data-reveal>
+      <p class="eyebrow">How it works</p>
+      <h2>From quote to delivered</h2>
+      <p class="lede">Four steps, one point of contact.</p>
+    </div>
     <ol class="steps">
-      <li><b>Get your price</b><p>Use the instant quote with your pickup, drop and freight type.</p></li>
-      <li><b>Confirm</b><p>We lock in equipment and your pickup window.</p></li>
-      <li><b>Track</b><p>Live GPS and temperature link goes out at pickup.</p></li>
-      <li><b>Deliver &amp; review</b><p>Digital POD, then tell us how we did.</p></li>
+      <li data-reveal="1"><h3>Get your price</h3><p>Use the instant quote with your pickup, drop and freight type.</p></li>
+      <li data-reveal="2"><h3>Confirm</h3><p>We lock in equipment and your pickup window.</p></li>
+      <li data-reveal="3"><h3>Track</h3><p>Live GPS and temperature link goes out at pickup.</p></li>
+      <li data-reveal="4"><h3>Deliver &amp; review</h3><p>Digital POD, then tell us how we did.</p></li>
     </ol>
   </div>
 </section>
 
-<section id="carrier">
-  <div class="wrap">
-    <p class="eyebrow">Carrier packet</p>
-    <h2>Paperwork your compliance team will want</h2>
-    <div class="cred">
-      <div>
-        <div class="kv"><span>Legal name</span><b>Supply Now Inc.</b></div>
-        <div class="kv"><span>Operating authority</span><b>MC 1660872 · Active</b></div>
-        <div class="kv"><span>USDOT</span><b>3976910</b></div>
-        <div class="kv"><span>Cargo insurance</span><b>Motor Truck Cargo</b></div>
+<section class="section" id="carrier">
+  <div class="wrap split">
+    <div data-reveal>
+      <p class="eyebrow">Carrier packet</p>
+      <h2>Paperwork your compliance team will want</h2>
+      <p class="lede">The carrier packet has our authority, insurance and equipment details in one place. Need a certificate of insurance? Ask and we'll send it.</p>
+      <div class="btns">
+        <a class="btn gold" href="https://tinyurl.com/SupplyNow-Carrier-Packet" target="_blank" rel="noopener">Open carrier packet</a>
+        <a class="btn line" href="mailto:mike@supplynow.org?subject=COI%20request">Request a COI</a>
       </div>
+    </div>
+    <div class="card creds" data-reveal="2">
+      <div class="krow"><span>Legal name</span><b>Supply Now Inc.</b></div>
+      <div class="krow"><span>Operating authority</span><b>MC 1660872 · Active</b></div>
+      <div class="krow"><span>USDOT</span><b>3976910</b></div>
+      <div class="krow"><span>Cargo insurance</span><b>Motor Truck Cargo</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="ctaband" data-reveal>
       <div>
-        <p class="lede" style="margin-top:0">The carrier packet has our authority, insurance and equipment details in one place. Need a certificate of insurance? Ask and we'll send it.</p>
-        <div class="btns">
-          <a class="btn gold" href="https://tinyurl.com/SupplyNow-Carrier-Packet" target="_blank" rel="noopener">Open carrier packet</a>
-          <a class="btn" href="mailto:mike@supplynow.org?subject=COI%20request">Request a COI</a>
-        </div>
+        <h2>Ready to move something?</h2>
+        <p>Get a ballpark estimate now. We confirm the details before your final rate.</p>
+      </div>
+      <div class="btns">
+        <a class="btn gold" href="#quote">Get an instant quote</a>
+        <a class="btn ghost" href="tel:+14405542222">Call 440-554-2222</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="faq" style="padding-top:0">
-  <div class="wrap">
-    <p class="eyebrow">FAQ</p>
-    <h2>Quick answers</h2>
-    <div class="faq">
+<section class="section alt" id="faq">
+  <div class="wrap split top">
+    <div data-reveal>
+      <p class="eyebrow">FAQ</p>
+      <h2>Quick answers</h2>
+      <p class="lede">Questions about a lane, tracking or paperwork? Reach Mike directly.</p>
+      <div class="btns">
+        <a class="btn teal" href="tel:+14405542222">Call 440-554-2222</a>
+        <a class="btn line" href="mailto:mike@supplynow.org">Email Mike</a>
+      </div>
+    </div>
+    <div class="faq" data-reveal="2">
       <details><summary>Are you a broker?</summary><p>No. SupplyNow is an asset-based carrier. Your freight moves on our trucks with our drivers.</p></details>
       <details><summary>Where do you deliver?</summary><p>Everywhere. Cleveland is home base, and we have hubs in Chicago, Detroit, Columbus, Pittsburgh and Wilkes-Barre.</p></details>
       <details><summary>What temperatures can you run?</summary><p>Frozen, refrigerated and ambient. Reefer temperature is monitored live and logged.</p></details>
@@ -443,56 +566,64 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   </div>
 </section>
 
-<section class="quote" id="quote">
-  <div class="wrap qgrid">
-    <div class="qcopy">
+<section class="section" id="quote">
+  <div class="wrap split top">
+    <div class="qcopy" data-reveal>
       <p class="eyebrow">Instant quote</p>
       <h2>Get a ballpark estimate in about a minute</h2>
       <p class="lede">Tell us the pickup, delivery, freight type, pallets and weight. A SupplyNow specialist confirms the details and any accessorials before issuing your final rate.</p>
-      <ul class="qlist">
+      <ul class="checks">
         <li>Dry, refrigerated or frozen</li>
         <li>Estimate and updates sent to your email</li>
         <li>Lift gate, appointments and temp set points priced in</li>
       </ul>
-      <p class="qalt">Prefer to talk? <a href="tel:+14405542222">Call 440-554-2222</a></p>
+      <p class="lede" style="font-size:17px">Prefer to talk? <a href="tel:+14405542222"><b>Call 440-554-2222</b></a></p>
     </div>
-    <div class="qform">
+    <div class="qform" data-reveal="2">
       <iframe class="airtable-embed" src="https://airtable.com/embed/appHVhO7lLuR1x1T7/pagvf7Symgb12g0gS/form" title="SupplyNow instant freight quote form" loading="lazy"></iframe>
       <p class="qfall">Form not loading? <a href="https://airtable.com/appHVhO7lLuR1x1T7/pagvf7Symgb12g0gS/form" target="_blank" rel="noopener">Open it in a new tab</a></p>
     </div>
   </div>
 </section>
 
-<section id="feedback">
-  <div class="wrap fb">
-    <div>
+<section class="section alt" id="feedback">
+  <div class="wrap split top">
+    <div data-reveal>
       <p class="eyebrow">Feedback</p>
       <h2>Tell us how we're doing</h2>
       <p class="lede">Shipped with us, requested a quote, or have an idea for a lane or service? Send it straight to Mike.</p>
     </div>
-    <form id="feedback-form" aria-label="Feedback form">
-      <label for="topic">What's it about?</label>
-      <select id="topic">
-        <option>A recent shipment</option>
-        <option>Instant quote</option>
-        <option>Lane or capacity request</option>
-        <option>Carrier onboarding / paperwork</option>
-        <option>Something else</option>
-      </select>
-      <label id="rateLabel">How did we do?</label>
-      <div class="stars" role="radiogroup" aria-labelledby="rateLabel">
-        <input type="radio" name="rate" id="r5" value="5"><label for="r5" title="5 stars">★</label>
-        <input type="radio" name="rate" id="r4" value="4"><label for="r4" title="4 stars">★</label>
-        <input type="radio" name="rate" id="r3" value="3"><label for="r3" title="3 stars">★</label>
-        <input type="radio" name="rate" id="r2" value="2"><label for="r2" title="2 stars">★</label>
-        <input type="radio" name="rate" id="r1" value="1"><label for="r1" title="1 star">★</label>
+    <form class="card form" id="feedback-form" aria-label="Feedback form" data-reveal="2">
+      <div class="field">
+        <label for="topic">What's it about?</label>
+        <select id="topic">
+          <option>A recent shipment</option>
+          <option>Instant quote</option>
+          <option>Lane or capacity request</option>
+          <option>Carrier onboarding / paperwork</option>
+          <option>Something else</option>
+        </select>
       </div>
-      <label for="msg">Your feedback or idea</label>
-      <textarea id="msg" required placeholder="What worked, what didn't, what should we add?"></textarea>
-      <label for="from">Your name, company or email (optional)</label>
-      <input type="text" id="from" autocomplete="email">
-      <button type="submit" class="btn gold">Send feedback</button>
-      <p class="note">Opens your email app with the message ready to send.</p>
+      <div class="field">
+        <span class="legend" id="rateLabel">How did we do?</span>
+        <div class="stars" role="radiogroup" aria-labelledby="rateLabel">
+          <input type="radio" name="rate" id="r5" value="5"><label for="r5" title="5 stars">★</label>
+          <input type="radio" name="rate" id="r4" value="4"><label for="r4" title="4 stars">★</label>
+          <input type="radio" name="rate" id="r3" value="3"><label for="r3" title="3 stars">★</label>
+          <input type="radio" name="rate" id="r2" value="2"><label for="r2" title="2 stars">★</label>
+          <input type="radio" name="rate" id="r1" value="1"><label for="r1" title="1 star">★</label>
+        </div>
+      </div>
+      <div class="field">
+        <label for="msg">Your feedback or idea</label>
+        <textarea id="msg" required placeholder="What worked, what didn't, what should we add?"></textarea>
+      </div>
+      <div class="field">
+        <label for="from">Your name, company or email (optional)</label>
+        <input type="text" id="from" autocomplete="email">
+      </div>
+      <button type="submit" class="btn gold block">Send feedback</button>
+      <p class="hint">Opens your email app with the message ready to send.</p>
       <p id="thanks" role="status">Thank you. Your message is ready to send.</p>
     </form>
   </div>
@@ -500,36 +631,84 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 
 </main>
 
-<footer>
+<footer class="site">
   <div class="wrap">
-    <div><img src="assets/supplynow-lockup-light.png" alt="SupplyNow Logistics Solutions" width="438" height="122" style="height:44px;width:auto;display:block;margin-bottom:10px"><b>Supply Now Inc.</b><br>MC 1660872 · USDOT 3976910<br>Cleveland, OH</div>
-    <div><b>Mike Cook, COO</b><br><a href="tel:+14405542222">440-554-2222</a><br><a href="mailto:mike@supplynow.org">mike@supplynow.org</a><br><a href="https://www.linkedin.com/in/michael-cook-98550b146" target="_blank" rel="noopener">LinkedIn</a></div>
-    <div><b>Links</b><br><a href="#quote">Get an instant quote</a><br><a href="https://tinyurl.com/SupplyNow-Carrier-Packet" target="_blank" rel="noopener">Carrier packet</a><br><a href="https://www.supplynow.org" target="_blank" rel="noopener">supplynow.org</a><br><a href="#feedback">Send feedback</a></div>
+    <div class="cols">
+      <div>
+        <img src="assets/supplynow-wordmark-light.png" alt="SupplyNow" width="438" height="67" style="height:26px;width:auto;margin-bottom:16px">
+        <p>Transportation-based solutions out of Cleveland, OH.</p>
+        <p style="margin-top:12px">Supply Now Inc.<br>MC 1660872 · USDOT 3976910<br>Cleveland, OH</p>
+      </div>
+      <div>
+        <h4>Mike Cook, COO</h4>
+        <a href="tel:+14405542222">440-554-2222</a>
+        <a href="mailto:mike@supplynow.org">mike@supplynow.org</a>
+        <a href="https://www.linkedin.com/in/michael-cook-98550b146" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <a href="#quote">Get an instant quote</a>
+        <a href="https://tinyurl.com/SupplyNow-Carrier-Packet" target="_blank" rel="noopener">Carrier packet</a>
+        <a href="https://www.supplynow.org" target="_blank" rel="noopener">supplynow.org</a>
+        <a href="#feedback">Send feedback</a>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <a href="#solutions">Solutions</a>
+        <a href="#lanes">Lanes &amp; coverage</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="yr">2026</span> Supply Now Inc. · MC 1660872 · USDOT 3976910</span>
+      <span>Asset-based carrier. Home base Cleveland, OH.</span>
+    </div>
+  </div>
+  <div class="dock">
+    <a class="btn ghost" href="tel:+14405542222">Call</a>
+    <a class="btn ghost" href="sms:+14405542222">Text</a>
+    <a class="btn gold" href="#quote">Instant quote</a>
   </div>
 </footer>
-
-<nav class="dock" aria-label="Quick actions">
-  <a href="tel:+14405542222">Call</a>
-  <a href="sms:+14405542222">Text</a>
-  <a class="gold" href="#quote">Instant quote</a>
-</nav>
 
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
+  $("yr").textContent = new Date().getFullYear();
+
+  // mobile menu
+  var btn = $("menu-btn"), drawer = $("drawer");
+  btn.addEventListener("click", function(){
+    var open = drawer.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open); btn.textContent = open ? "Close" : "Menu";
+  });
+  drawer.addEventListener("click", function(e){ if (e.target.tagName === "A") { drawer.classList.remove("open"); btn.setAttribute("aria-expanded", false); btn.textContent = "Menu"; } });
+
+  // scroll reveal
+  var els = [].slice.call(document.querySelectorAll("[data-reveal]"));
+  if (!("IntersectionObserver" in window)) els.forEach(function(e){ e.classList.add("in"); });
+  else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  // feedback form opens a pre-filled email
   $("feedback-form").addEventListener("submit", function(e){
     e.preventDefault();
-    var r = document.querySelector("input[name=rate]:checked");
-    var from = $("from").value;
+    var r = document.querySelector("input[name=rate]:checked"), from = $("from").value;
     var body = ["Topic: " + $("topic").value, r ? "Rating: " + r.value + "/5" : "", "", $("msg").value, from ? "\nFrom: " + from : ""].join("\n");
     location.href = "mailto:mike@supplynow.org?subject=" + encodeURIComponent("Feedback: " + $("topic").value) + "&body=" + encodeURIComponent(body);
     $("thanks").style.display = "block";
   });
 })();
 </script>
+
 <script>
-/* Hero background: an animated night highway (light trails heading into a hub city).
-   If data-src on #hero-video points at a clip (e.g. assets/hero.mp4), the clip fades in and replaces it. */
+/* Hero media: the supplynow.org network video, with the animated night highway as the fallback
+   (and the only thing shown to visitors who prefer reduced motion). */
 (function(){
   var hero = document.querySelector(".hero"), cv = document.getElementById("hero-canvas"), vid = document.getElementById("hero-video");
   if (!hero || !cv || !cv.getContext) return;
@@ -537,16 +716,17 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var stopped = false, visible = true, raf = 0, last = 0, time = 0;
 
-  var src = vid && vid.getAttribute("data-src");
-  if (src && !reduce) {
+  var SOURCES = ["https://www.supplynow.org/hero-network.mp4"];
+  if (vid && !reduce) {
+    var i = 0;
+    var tryNext = function(){ if (i >= SOURCES.length) { vid.remove(); return; } vid.src = SOURCES[i++]; };
+    vid.addEventListener("error", tryNext);
     vid.addEventListener("canplay", function(){ vid.classList.add("on"); var p = vid.play(); if (p) p.catch(function(){}); stopped = true; }, { once: true });
-    vid.addEventListener("error", function(){ vid.remove(); });
-    vid.src = src;
+    tryNext();
   }
 
   var seed = 11; function R(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }
-  var skyline = []; for (var i = 0; i < 46; i++) skyline.push({ x: R(), w: 0.004 + R() * 0.014, h: 3 + R() * R() * 52, lit: R() });
-
+  var skyline = []; for (var k = 0; k < 46; k++) skyline.push({ x: R(), w: 0.004 + R() * 0.014, h: 3 + R() * R() * 52, lit: R() });
   var W, H, vx, vy, RW;
   function size(){
     var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -554,28 +734,25 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     var narrow = W < 700;
-    vx = W * 0.5; vy = narrow ? Math.min(H * 0.24, 260) : H * 0.38;
+    vx = narrow ? W * 0.5 : W * 0.68; vy = narrow ? Math.min(H * 0.24, 260) : H * 0.4;
     RW = W * (narrow ? 2.6 : 2.3);
   }
   function P(f, t){ var bx = vx + (f - 0.5) * RW; return [vx + (bx - vx) * t, vy + (H - vy) * t]; }
   function seg(f, t1, t2){ var a = P(f, t1), b = P(f, t2); ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke(); }
-
   var ON = [1/12, 3/12, 5/12], AWAY = [7/12, 9/12, 11/12], cars = [];
   function spawn(c, first){
     if (c.on) { c.f = ON[(R() * 3) | 0]; c.z = first ? 1 + R() * 40 : 30 + R() * 15; c.v = -(9 + R() * 7); }
     else      { c.f = AWAY[(R() * 3) | 0]; c.z = first ? 0.8 + R() * 30 : 0.7; c.v = 2 + R() * 4; }
     c.f += (R() - 0.5) * 0.03;
   }
-  for (i = 0; i < 26; i++) { var c = { on: i < 13 }; spawn(c, true); cars.push(c); }
-  var reefer = { on: false, f: 7/12, z: 2.2, v: 1.3, reefer: true };
-
+  for (k = 0; k < 26; k++) { var c = { on: k < 13 }; spawn(c, true); cars.push(c); }
+  var reefer = { on: false, f: 7/12, z: 2.2, v: 1.3 };
   function light(f, z1, z2, rgb, w){
     if (z1 < 0.55) z1 = 0.55; if (z2 <= z1) return;
     var t = 1 / z1, a = Math.min(1, 0.45 + t * 3);
     ctx.lineWidth = Math.max(3, w * t * 3.6); ctx.strokeStyle = "rgba(" + rgb + "," + (a * 0.28) + ")"; seg(f, 1 / z1, 1 / z2);
     ctx.lineWidth = Math.max(1.2, w * t);     ctx.strokeStyle = "rgba(" + rgb + "," + a + ")";          seg(f, 1 / z1, 1 / z2);
   }
-
   function draw(){
     var g = ctx.createLinearGradient(0, 0, 0, vy);
     g.addColorStop(0, "#060d13"); g.addColorStop(1, "#16303e");
@@ -585,16 +762,12 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     var glow = ctx.createRadialGradient(vx, vy, 0, vx, vy, W * 0.45);
     glow.addColorStop(0, "rgba(233,200,100,.28)"); glow.addColorStop(1, "rgba(233,200,100,0)");
     ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
-
-    // skyline at the vanishing point
     var span = Math.min(W * 0.5, 520), x0 = vx - span * 0.55;
     skyline.forEach(function(b){
       var x = x0 + b.x * span, w = Math.max(3, b.w * span), h = b.h * (span / 520);
       ctx.fillStyle = "#0a161e"; ctx.fillRect(x, vy - h, w, h);
       if (b.lit > 0.55 && h > 12) { ctx.fillStyle = "rgba(233,200,100,.55)"; ctx.fillRect(x + w * 0.35, vy - h * 0.7, 1.2, 1.2); }
     });
-
-    // road surface and markings
     var bl = P(-0.02, 1.3), br = P(1.02, 1.3);
     ctx.fillStyle = "rgba(255,255,255,.03)";
     ctx.beginPath(); ctx.moveTo(vx, vy); ctx.lineTo(bl[0], bl[1]); ctx.lineTo(br[0], br[1]); ctx.closePath(); ctx.fill();
@@ -603,22 +776,18 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     ctx.strokeStyle = "rgba(233,200,100,.4)"; seg(0.493, 0.01, 1.3); seg(0.507, 0.01, 1.3);
     var period = 3.2, len = 1.2, phase = (time * 7) % period;
     [1/6, 2/6, 4/6, 5/6].forEach(function(f){
-      for (var k = 0; k < 16; k++) {
-        var z = 0.6 + k * period - phase; if (z < 0.6) continue;
+      for (var n = 0; n < 16; n++) {
+        var z = 0.6 + n * period - phase; if (z < 0.6) continue;
         var t = 1 / z; ctx.lineWidth = Math.max(0.6, 3.5 * t);
         ctx.strokeStyle = "rgba(255,255,255," + (0.4 * Math.min(1, t * 4)) + ")";
         seg(f, t, 1 / (z + len));
       }
     });
-
-    // traffic light trails
     ctx.globalCompositeOperation = "lighter";
     cars.concat([reefer]).forEach(function(c){
       if (c.on) { light(c.f - 0.028, c.z, c.z + 2.4, "255,240,215", 3); light(c.f + 0.028, c.z, c.z + 2.4, "255,240,215", 3); }
-      else      { var rgb = "255,60,50"; light(c.f - 0.03, c.z - 1.4, c.z, rgb, 2.6); light(c.f + 0.03, c.z - 1.4, c.z, rgb, 2.6); }
+      else      { light(c.f - 0.03, c.z - 1.4, c.z, "255,60,50", 2.6); light(c.f + 0.03, c.z - 1.4, c.z, "255,60,50", 2.6); }
     });
-
-    // the tracked reefer: live GPS ping + temperature tag
     ctx.globalCompositeOperation = "source-over";
     var t = 1 / reefer.z;
     if (W >= 700 && t > 0.08 && t < 0.75) {
@@ -634,7 +803,6 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       ctx.fillStyle = "#bff3ee"; ctx.fillText(label, lx + 8, ly + 14);
     }
   }
-
   function step(dt){
     time += dt;
     cars.forEach(function(c){ c.z += c.v * dt; if (c.on ? c.z < 0.55 : c.z > 45) spawn(c, false); });
@@ -647,7 +815,6 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     step(dt); draw(); raf = requestAnimationFrame(frame);
   }
   function kick(){ if (!raf && !reduce && !stopped) { last = 0; raf = requestAnimationFrame(frame); } }
-
   size(); step(0); draw();
   window.addEventListener("resize", function(){ size(); draw(); });
   if ("IntersectionObserver" in window) new IntersectionObserver(function(e){ visible = e[0].isIntersecting; if (visible) kick(); }).observe(hero);
