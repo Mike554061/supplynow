@@ -79,6 +79,24 @@ button,input,select,textarea{font:inherit;color:inherit}
 .panel a span{font:500 12px var(--mono);letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase}
 .panel .close{float:right;margin:-4px -4px 8px 8px}
 
+/* contact card under the header */
+.contact{padding-block:clamp(16px,1.9vw,28px);border-bottom:1px solid var(--line)}
+.ccard{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 32px;background:var(--card);border:1px solid var(--line-2);border-radius:22px;padding:clamp(20px,2vw,30px)}
+.ccard .who{display:flex;align-items:center;gap:20px;min-width:0}
+.ccard .avatar{flex:none;width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font:600 26px/1 var(--sans);letter-spacing:-.02em;color:#101012;
+  background:linear-gradient(135deg,#78d4b7,#377484 45%,#ffb535)}
+.ccard .name{font-size:clamp(30px,2.8vw,44px);letter-spacing:-.04em;line-height:1}
+.ccard .role{margin-top:8px;font:500 clamp(12px,.95vw,14px)/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--amber)}
+.ccard .reach{margin-top:6px;font:400 14px/1.4 var(--mono);color:var(--ink-3)}
+.ccard .links{display:flex;flex-wrap:wrap;gap:10px}
+.ccard .pill{min-height:52px;padding:0 24px;font-size:17px}
+@media (max-width:760px){
+  .ccard{flex-direction:column;align-items:stretch}
+  .ccard .avatar{width:60px;height:60px;font-size:22px}
+  .ccard .links{display:grid;grid-template-columns:1fr 1fr}
+  .ccard .pill{padding:0 12px}
+}
+
 /* hero */
 .hero{position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--line)}
 #field{position:absolute;inset:0;z-index:-2;width:100%;height:100%}
@@ -87,8 +105,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hint{position:absolute;top:clamp(18px,2vw,32px);right:var(--gutter);display:flex;align-items:center;gap:12px;font:400 13px/1.4 var(--mono);color:var(--ink-3);max-width:calc(100% - 48px)}
 .hint i{flex:none;width:24px;height:24px;border-radius:50%;border:1.5px dashed var(--ink-3);animation:spin 12s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.hero .grid{display:grid;grid-template-columns:minmax(0,1fr) clamp(380px,37vw,620px);gap:clamp(32px,6vw,110px);align-items:end;padding-block:clamp(120px,11.8vw,190px) clamp(48px,4.7vw,76px)}
-.hero h1{font-size:clamp(52px,7vw,108px);letter-spacing:-.055em;line-height:.93;font-weight:600}
+.hero .grid{display:grid;grid-template-columns:minmax(0,62%);align-items:end;padding-block:clamp(110px,10vw,170px) clamp(56px,5.5vw,90px)}
+.hero .h1{font-size:clamp(52px,7vw,108px);letter-spacing:-.055em;line-height:.93;font-weight:600}
 .hero .sub{margin-top:clamp(28px,3vw,48px);font-size:clamp(17px,1.45vw,23px);line-height:1.72;color:var(--ink-2);max-width:56ch}
 .hero .sub b{color:var(--ink);font-weight:600}
 .hero .pills{margin-top:40px}
@@ -221,7 +239,7 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px
 .js [data-reveal].in{opacity:1;transform:none}
 
 @media (max-width:1060px){
-  .hero .grid{grid-template-columns:minmax(0,1fr);padding-block:130px 64px;gap:56px}
+  .hero .grid{grid-template-columns:minmax(0,1fr);padding-block:110px 64px}
   .hero-shade{background:linear-gradient(180deg,rgba(var(--shade),.35) 0%,rgba(var(--shade),.75) 45%,rgba(var(--shade),.85) 100%)}
   .split{grid-template-columns:minmax(0,1fr);gap:44px}
   .qcopy{position:static}
@@ -290,6 +308,27 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px
 
 <main id="main">
 
+<section class="contact" aria-label="Contact Mike Cook">
+  <div class="wrap">
+    <div class="ccard">
+      <div class="who">
+        <div class="avatar" aria-hidden="true">MC</div>
+        <div>
+          <h1 class="name">Mike Cook</h1>
+          <p class="role">Chief Operating Officer · SupplyNow</p>
+          <p class="reach">440-554-2222 · mike@supplynow.org</p>
+        </div>
+      </div>
+      <div class="links">
+        <a class="pill solid" href="tel:+14405542222"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Call</a>
+        <a class="pill" href="sms:+14405542222"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>Text</a>
+        <a class="pill" href="mailto:mike@supplynow.org"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>Email</a>
+        <a class="pill" href="https://www.linkedin.com/in/michael-cook-98550b146" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 10v6M8 7.5v.01M12 16v-6M12 12.5a2.5 2.5 0 0 1 5 0V16"/></svg>LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="hero" aria-label="Introduction">
   <canvas id="field" aria-hidden="true"></canvas>
   <div class="hero-shade" aria-hidden="true"></div>
@@ -298,7 +337,7 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px
   <div class="wrap grid">
     <div>
       <p class="eyebrow">Transportation-based solutions · Cold or dry, for everyone</p>
-      <h1>Your freight, on our trucks, with our drivers.</h1>
+      <h2 class="h1">Your freight, on our trucks, with our drivers.</h2>
       <p class="sub" id="hero-sub">Refrigerated, frozen and dry trucks, with live GPS and temperature on every load. From your dock to <b id="hero-who">restaurants and foodservice around Cleveland</b>, every delivery closes with a digital proof of delivery.</p>
       <div class="pills">
         <a class="pill solid" href="tel:+14405542222">Talk to a specialist <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -306,37 +345,6 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px
       </div>
     </div>
 
-    <aside class="record" aria-label="Contact Mike Cook">
-      <span class="flag">Direct line</span>
-      <div class="top"><b>Mike Cook · Chief Operating Officer</b><span>SupplyNow</span></div>
-      <div class="shot">
-        <svg viewBox="0 0 460 270" aria-hidden="true" fill="none" stroke="var(--stroke)" stroke-width="1.6" stroke-linejoin="round">
-          <rect x="40" y="56" width="250" height="132" rx="4"/>
-          <path d="M290 96h70l46 46v46H290z"/><path d="M306 110h48l30 30h-78z"/>
-          <rect x="62" y="104" width="62" height="66"/><rect x="130" y="104" width="62" height="66"/><rect x="198" y="104" width="62" height="66"/>
-          <rect x="96" y="40" width="70" height="64"/>
-          <rect x="81" y="122" width="22" height="9" fill="var(--amber)" stroke="none"/><rect x="149" y="122" width="22" height="9" fill="var(--amber)" stroke="none"/>
-          <rect x="217" y="122" width="22" height="9" fill="var(--amber)" stroke="none"/><rect x="120" y="60" width="22" height="9" fill="var(--amber)" stroke="none"/>
-          <circle cx="100" cy="200" r="16"/><circle cx="356" cy="200" r="16"/><circle cx="100" cy="200" r="5"/><circle cx="356" cy="200" r="5"/>
-          <path d="M8 216h444" stroke-dasharray="5 6" opacity=".6"/>
-          <path d="M318 74c6-8 16-8 22 0M310 64c11-14 27-14 38 0" stroke="var(--teal)"/>
-        </svg>
-        <span class="cap">CLE · HOME BASE</span>
-      </div>
-      <div class="cells">
-        <div><span class="tag">Phone</span><b><a href="tel:+14405542222">440-554-2222</a></b></div>
-        <div><span class="tag">Email</span><b><a href="mailto:mike@supplynow.org">mike@supplynow.org</a></b></div>
-        <div><span class="tag">Status</span><b class="ok">Taking loads</b></div>
-        <div><span class="tag">Freight</span><b id="card-freight">Refrigerated</b></div>
-      </div>
-      <div class="notes"><span class="tag">Notes</span><p>Asset-based: our trucks, our drivers, no broker daisy-chain. Live GPS and temperature on every load.</p></div>
-      <div class="acts">
-        <a href="tel:+14405542222"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>CALL</a>
-        <a href="sms:+14405542222"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>TEXT</a>
-        <a href="mailto:mike@supplynow.org"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>EMAIL</a>
-        <a href="https://www.linkedin.com/in/michael-cook-98550b146" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 10v6M8 7.5v.01M12 16v-6M12 12.5a2.5 2.5 0 0 1 5 0V16"/></svg>LINKEDIN</a>
-      </div>
-    </aside>
   </div>
 
   <div class="tune">
@@ -660,7 +668,6 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px
   function tune(){
     var city = tl.value.split(",")[0];
     $("hero-who").textContent = tw.value + " around " + city;
-    $("card-freight").textContent = tf.value;
     $("hero-quote").textContent = "Quote a " + tf.value.toLowerCase() + " load";
   }
   // size each dropdown to its current choice so the sentence reads naturally
