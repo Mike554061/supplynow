@@ -18,16 +18,16 @@
 /* Matches supplynow.vercel.app: near-black field, topographic contour hero (teal into orange),
    Geist display set tight, Geist Mono labels, pill buttons, "record" cards, tune-this-site bar. */
 :root,:root[data-theme="dark"]{
-  --bg:#0b0c0d; --bg-2:#101213; --card:#131516; --card-2:#0e1011; --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.18);
-  --ink:#f3f3f1; --ink-2:#a8acae; --ink-3:#6e7376; --teal:#2fc4a8; --green:#45d39b; --amber:#f2b33d; --orange:#ff7a3d; --red:#e5484d;
-  --btn:#f3f3f1; --btn-ink:#0b0c0d; --shade:11,12,13; --stroke:rgba(255,255,255,.72);
+  --bg:#101012; --bg-2:#141416; --card:#111113; --card-2:#1a1711; --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.16);
+  --ink:#f4f4f2; --ink-2:#c2c3c1; --ink-3:#8b8d8e; --head:#090909; --tunebg:#110d0c; --teal:#2fc4a8; --green:#45d39b; --amber:#f2b33d; --orange:#ff7a3d; --red:#e5484d;
+  --btn:#f4f4f2; --btn-ink:#101012; --shade:16,16,18; --stroke:rgba(255,255,255,.72);
   --sans:"Geist",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   color-scheme:dark;
 }
 :root[data-theme="light"]{
   --bg:#f3f1ec; --bg-2:#ebe8e1; --card:#ffffff; --card-2:#f6f4ef; --line:rgba(0,0,0,.09); --line-2:rgba(0,0,0,.18);
-  --ink:#121314; --ink-2:#4b5054; --ink-3:#7a7f83; --teal:#0f9a83; --green:#138a5c; --amber:#b7791f; --orange:#d9581f; --red:#c93a3f;
+  --ink:#121314; --ink-2:#3f4448; --ink-3:#6f7478; --head:#ebe8e1; --tunebg:#ebe6dd; --teal:#0f9a83; --green:#138a5c; --amber:#b7791f; --orange:#d9581f; --red:#c93a3f;
   --btn:#121314; --btn-ink:#f3f1ec; --shade:243,241,236; --stroke:rgba(0,0,0,.7);
   color-scheme:light;
 }
@@ -42,15 +42,16 @@ button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:8px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .mono{font-family:var(--mono)}
-.wrap{width:min(1280px,100% - 48px);margin-inline:auto}
+.wrap{width:100%;padding-inline:var(--gutter);margin-inline:auto}
+:root{--gutter:clamp(16px,1.9vw,32px)}
 
 /* labels */
-.eyebrow{display:flex;align-items:center;gap:14px;font:500 13px/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:22px}
+.eyebrow{display:flex;align-items:center;gap:14px;font:400 clamp(12px,1vw,15px)/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:22px}
 .eyebrow::before{content:"";flex:none;width:30px;height:3px;border-radius:2px;background:linear-gradient(90deg,#4c8dff,var(--teal) 45%,var(--amber) 75%,var(--orange))}
 .tag{font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
 
 /* buttons */
-.pill{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:58px;padding:0 30px;border-radius:999px;font:500 18px/1 var(--sans);
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:clamp(52px,4.3vw,66px);padding:0 clamp(24px,2.2vw,34px);border-radius:999px;font:500 clamp(16px,1.35vw,20px)/1 var(--sans);
   text-decoration:none;border:1px solid var(--line-2);color:var(--ink);background:transparent;cursor:pointer;transition:transform .15s,background .15s,border-color .15s}
 .pill:hover{transform:translateY(-1px);border-color:var(--ink-3)}
 .pill.solid{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
@@ -58,7 +59,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .pills{display:flex;flex-wrap:wrap;gap:14px}
 
 /* header */
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(var(--shade),.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--head);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .bar .wrap{display:flex;align-items:center;gap:12px;min-height:84px}
 .logo img{height:26px;width:auto;max-width:none}
 :root[data-theme="light"] .logo img{filter:invert(1) hue-rotate(180deg) saturate(1.4)}
@@ -82,25 +83,25 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero{position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid var(--line)}
 #field{position:absolute;inset:0;z-index:-2;width:100%;height:100%}
 .hero-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(90deg,rgba(var(--shade),.72) 0%,rgba(var(--shade),.5) 38%,rgba(var(--shade),.05) 70%,rgba(var(--shade),0) 100%)}
-.hint{position:absolute;top:22px;right:24px;display:flex;align-items:center;gap:12px;font:400 13px/1.4 var(--mono);color:var(--ink-3);max-width:calc(100% - 48px)}
+  background:linear-gradient(90deg,rgba(var(--shade),.6) 0%,rgba(var(--shade),.42) 40%,rgba(var(--shade),.05) 68%,rgba(var(--shade),0) 100%)}
+.hint{position:absolute;top:clamp(18px,2vw,32px);right:var(--gutter);display:flex;align-items:center;gap:12px;font:400 13px/1.4 var(--mono);color:var(--ink-3);max-width:calc(100% - 48px)}
 .hint i{flex:none;width:24px;height:24px;border-radius:50%;border:1.5px dashed var(--ink-3);animation:spin 12s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.hero .grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.95fr);gap:56px;align-items:end;padding-block:170px 96px}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1fr) clamp(380px,37vw,620px);gap:clamp(32px,6vw,110px);align-items:end;padding-block:clamp(120px,11.8vw,190px) clamp(48px,4.7vw,76px)}
 .hero h1{font-size:clamp(52px,7vw,108px);letter-spacing:-.055em;line-height:.93;font-weight:600}
-.hero .sub{margin-top:36px;font-size:21px;line-height:1.65;color:var(--ink-2);max-width:60ch}
+.hero .sub{margin-top:clamp(28px,3vw,48px);font-size:clamp(17px,1.45vw,23px);line-height:1.72;color:var(--ink-2);max-width:56ch}
 .hero .sub b{color:var(--ink);font-weight:600}
 .hero .pills{margin-top:40px}
 
 /* record card */
-.record{position:relative;background:rgba(19,21,22,.88);border:1px solid var(--line-2);border-radius:22px;padding:24px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.record{position:relative;background:rgba(17,17,19,.92);border:1px solid var(--line-2);border-radius:22px;padding:24px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 :root[data-theme="light"] .record{background:rgba(255,255,255,.9)}
 .record .flag{position:absolute;top:-15px;right:22px;display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--bg);border:1px solid var(--line-2);font:500 13px/1 var(--mono);color:var(--amber)}
 .record .flag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber)}
 .record .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:18px}
 .record .top b{font-size:19px;font-weight:600;letter-spacing:-.01em}
 .record .top span{font:400 14px var(--mono);color:var(--ink-3)}
-.shot{position:relative;background:var(--card-2);border:1px solid var(--line);border-radius:14px;padding:22px 22px 12px;overflow:hidden}
+.shot{position:relative;background:#1a1711;border:1px solid var(--line);border-radius:14px;padding:22px 22px 12px;overflow:hidden}
 .shot svg{width:100%;height:auto}
 .shot .cap{position:absolute;left:14px;bottom:12px;padding:6px 10px;border-radius:8px;background:var(--bg);border:1px solid var(--line);font:500 12.5px/1 var(--mono);color:var(--ink-2)}
 .cells{display:grid;grid-template-columns:1fr 1fr;margin-top:18px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
@@ -121,11 +122,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .acts svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* tune this site */
-.tune{border-top:1px solid var(--line);background:rgba(var(--shade),.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.tune{border-top:1px solid var(--line);background:var(--tunebg);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .tune .wrap{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px;align-items:center;padding-block:26px}
 .tune .label{display:flex;align-items:center;gap:10px;font:500 13px var(--mono);letter-spacing:.1em;color:var(--ink-3);text-transform:uppercase;white-space:nowrap}
 .tune .label::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--green)}
-.sentence{font-size:clamp(24px,2.9vw,40px);line-height:1.35;letter-spacing:-.02em;color:var(--ink-3)}
+.sentence{font-size:clamp(22px,2.35vw,36px);line-height:1.35;letter-spacing:-.02em;color:var(--ink-3)}
 .sentence .pick{position:relative;display:inline-block;color:var(--ink)}
 .sentence select{appearance:none;-webkit-appearance:none;background:transparent;border:0;border-bottom:1px solid var(--line-2);color:var(--ink);font:inherit;letter-spacing:inherit;
   padding:0 34px 2px 2px;cursor:pointer;max-width:100%}
@@ -230,7 +231,6 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px
   .tune .reset{justify-self:start}
 }
 @media (max-width:760px){
-  .wrap{width:min(1280px,100% - 32px)}
   .bar .wrap{min-height:70px}
   .hint{display:none}
   .hero .grid{padding-block:72px 48px}
@@ -757,10 +757,14 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px
     sample();
     ctx.globalCompositeOperation = "source-over";
     ctx.clearRect(0, 0, W, H);
-    ctx.beginPath();
+    var light = document.documentElement.getAttribute("data-theme") === "light";
     var LEVELS = 26, lo = .15, hi = 1.45, step = (hi - lo) / LEVELS;
+    ctx.lineWidth = 1.3;
+    colors = assign(LEVELS, light);
+    var next = new Float32Array(LEVELS);
     for (var L = 0; L < LEVELS; L++) {
       var iso = lo + L * step;
+      ctx.beginPath(); segs = 0;
       for (var r = 0; r < rows - 1; r++) {
         for (var c = 0; c < cols - 1; c++) {
           var a = vals[r * cols + c], b = vals[r * cols + c + 1], d = vals[(r + 1) * cols + c], e = vals[(r + 1) * cols + c + 1];
@@ -781,19 +785,29 @@ footer .legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px
           }
         }
       }
+      ctx.strokeStyle = colors[L];
+      ctx.stroke();
+      next[L] = segs;
     }
-    var light = document.documentElement.getAttribute("data-theme") === "light";
-    ctx.lineWidth = 1.35; ctx.strokeStyle = light ? "rgba(0,0,0,.6)" : "rgba(255,255,255,.88)";
-    ctx.stroke();
-    // tint the lines: teal across the top, through olive and amber, into orange-red at the bottom
-    ctx.globalCompositeOperation = "source-in";
-    var g = ctx.createLinearGradient(W * .35, 0, W * .62, H);
-    g.addColorStop(0, light ? "#0f9a83" : "#2fc4a8"); g.addColorStop(.38, light ? "#3f8f6a" : "#4fae86");
-    g.addColorStop(.6, light ? "#b7791f" : "#d8a640"); g.addColorStop(.8, light ? "#d9581f" : "#ff7a3d"); g.addColorStop(1, light ? "#c93a3f" : "#e5484d");
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-    ctx.globalCompositeOperation = "source-over";
+    counts = next;
   }
-  function seg(p1, p2){ ctx.moveTo(p1[0], p1[1]); ctx.lineTo(p2[0], p2[1]); }
+  // Color by contour height. Bands run low to high and the shares are tuned so the rendered hero
+  // matches the live site's mix: about 39% slate/teal, 19% mint, 6% olive, 16% amber, 20% orange/rust.
+  var BANDS = [[.02,[159,149,171,.5]],[.15,[53,101,117,.85]],[.15,[62,132,140,.9]],[.14,[120,212,183,.9]],
+               [.07,[94,101,69,.85]],[.20,[255,181,53,.95]],[.12,[236,120,58,.9]],[.15,[122,74,54,.85]]];
+  var counts = null, colors = null, segs = 0;
+  function rgba(c, light){ var k = light ? .72 : 1; return "rgba(" + (c[0] * k | 0) + "," + (c[1] * k | 0) + "," + (c[2] * k | 0) + "," + c[3] + ")"; }
+  function assign(LEVELS, light){
+    var total = 0, L, cum = 0, out = [];
+    for (L = 0; L < LEVELS; L++) total += counts ? counts[L] : 1;
+    for (L = 0; L < LEVELS; L++) {
+      var n = counts ? counts[L] : 1, mid = (cum + n / 2) / total, acc = 0, b = 0;
+      for (b = 0; b < BANDS.length - 1; b++) { acc += BANDS[b][0]; if (mid <= acc) break; }
+      out[L] = rgba(BANDS[b][1], light); cum += n;
+    }
+    return out;
+  }
+  function seg(p1, p2){ ctx.moveTo(p1[0], p1[1]); ctx.lineTo(p2[0], p2[1]); segs++; }
 
   function frame(ts){
     raf = 0;
