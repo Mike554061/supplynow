@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b2350">
 <title>Kyle Kuczynski · SupplyNow</title>
-<meta name="description" content="Kyle Kuczynski, SupplyNow. Order from Restaurant Depot online for pickup, and SupplyNow picks it up and delivers it to your kitchen, cold chain intact.">
+<meta name="description" content="Kyle Kuczynski, Customer Success Coordinator at SupplyNow. Order on RestaurantDepot.com and SupplyNow selects your order for pickup or delivers it, at nine Restaurant Depot locations.">
 <link rel="icon" href="../icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -118,6 +118,39 @@ button,input,select,textarea{font:inherit;color:inherit}
 .reset{background:none;border:0;font:500 13px var(--mono);letter-spacing:.06em;color:#8fa3c9;cursor:pointer}
 .reset:hover{color:#fff}
 
+/* two fulfillment types */
+.ways{display:grid;grid-template-columns:.85fr 1fr 1fr;gap:18px}
+.way.today{background:var(--bg-2);border-style:dashed}
+.way.today .ic{background:rgba(107,120,145,.15);color:var(--ink-3)}
+.chores{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.chores li{display:flex;gap:10px;color:var(--ink-2);text-decoration:line-through;text-decoration-color:rgba(29,95,214,.55);text-decoration-thickness:2px}
+.chores li::before{content:"";flex:none;width:8px;height:8px;margin-top:9px;border-radius:2px;background:var(--ink-3)}
+.way.today .arrow{margin-top:auto;font:600 14px var(--mono);color:var(--blue);letter-spacing:.02em}
+.way{background:var(--card);border:1px solid var(--line-2);border-radius:24px;padding:clamp(24px,2.4vw,36px);display:flex;flex-direction:column;gap:18px;transition:border-color .2s,box-shadow .2s}
+.way.on{border-color:var(--blue);box-shadow:0 0 0 3px rgba(29,95,214,.15)}
+.way-top{display:flex;align-items:center;gap:16px}
+.way .ic{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:rgba(29,95,214,.1);color:var(--blue)}
+#way-delivery .ic{background:rgba(255,201,60,.25);color:#8a5a00}
+.way .ic svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.way h3{font-size:clamp(30px,2.6vw,40px);margin-top:4px}
+.way .what{font-size:18px;color:var(--ink-2)}
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:f}
+.flow li{counter-increment:f;display:grid;grid-template-columns:34px 1fr;column-gap:12px;color:var(--ink-2);font-size:16px}
+.flow li::before{content:counter(f);grid-row:span 2;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font:600 13px var(--mono)}
+.flow b{color:var(--ink);font-size:17px}
+.best{padding:16px 18px;border-radius:14px;background:var(--card-2)}
+.best .tag{display:block;margin-bottom:6px}
+.best p{color:var(--ink-2);font-size:15.5px}
+.gains{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.gains li{display:flex;gap:10px;font-weight:600}
+.gains li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:var(--yellow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%230b2350' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/13px no-repeat}
+/* locations */
+.states{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.state{background:var(--bg);border:1px solid var(--line-2);border-radius:18px;padding:20px 22px}
+.state ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.state li{font-size:20px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.state li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+
 /* sections */
 .section{padding-block:clamp(72px,9vw,128px);border-bottom:1px solid var(--line)}
 .section.alt{background:var(--card)}
@@ -199,6 +232,7 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
   .hero-shade{background:linear-gradient(180deg,rgba(10,29,68,.35) 0%,rgba(10,29,68,.75) 45%,rgba(10,29,68,.88) 100%)}
   .split{grid-template-columns:minmax(0,1fr);gap:44px}
   .steps,.cards,.res{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ways{grid-template-columns:minmax(0,1fr)}
   .tune .wrap{grid-template-columns:minmax(0,1fr);gap:10px}
   .tune .reset{justify-self:start}
 }
@@ -210,7 +244,7 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
   .avatar{width:60px;height:60px;font-size:22px}
   .ccard .links{display:grid;grid-template-columns:1fr 1fr 1fr}
   .ccard .pill{padding:0 10px}
-  .steps,.cards,.res{grid-template-columns:minmax(0,1fr)}
+  .steps,.cards,.res,.states{grid-template-columns:minmax(0,1fr)}
   .card{min-height:0}
   .row2{grid-template-columns:minmax(0,1fr)}
   footer .cols{grid-template-columns:1fr 1fr}
@@ -243,13 +277,15 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
     <button class="round close" type="button" id="close-overlay" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
     <input id="q" type="search" placeholder="Search this page" autocomplete="off" aria-label="Search this page">
     <ul id="results">
-      <li><a href="#how">How ordering works<span>4 steps</span></a></li>
-      <li><a href="#services">What we handle<span>Pickup · cold chain · schedules</span></a></li>
+      <li><a href="#ways">Pickup or delivery<span>The two ways to get your order</span></a></li>
+      <li><a href="#start">Getting started<span>Membership · account · first order</span></a></li>
+      <li><a href="#value">Why order online<span>Time back · accuracy · cold chain</span></a></li>
+      <li><a href="#locations">Locations<span>9 depots · OH · IN · PA · MI</span></a></li>
       <li><a href="#resources">Resources<span>Membership · ordering · FAQ</span></a></li>
-      <li><a href="#who">Who is SupplyNow<span>Our trucks, our drivers</span></a></li>
-      <li><a href="#faq">Common questions<span>Membership, fees, timing</span></a></li>
-      <li><a href="#ask">Ask Kyle<span>Questions and order details</span></a></li>
-      <li><a href="https://www.restaurantdepot.com" target="_blank" rel="noopener">Order on Restaurant Depot<span>restaurantdepot.com</span></a></li>
+      <li><a href="#who">Who is SupplyNow<span>The team behind your order</span></a></li>
+      <li><a href="#faq">Common questions<span>Accounts, orders, locations</span></a></li>
+      <li><a href="#ask">Ask Kyle<span>Set-up help and questions</span></a></li>
+      <li><a href="https://www.restaurantdepot.com" target="_blank" rel="noopener">Order on RestaurantDepot.com<span>restaurantdepot.com</span></a></li>
       <li><a href="tel:+13305238748">Call Kyle<span>330-523-8748</span></a></li>
       <li><a href="mailto:kyle@supplynow.org">Email Kyle<span>kyle@supplynow.org</span></a></li>
     </ul>
@@ -265,8 +301,8 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
         <div class="avatar" aria-hidden="true">KK</div>
         <div>
           <h1 class="name">Kyle Kuczynski</h1>
-          <p class="role">Operations &amp; Customer Success Coordinator · SupplyNow</p>
-          <p class="focus">Restaurant Depot delivery</p>
+          <p class="role">Customer Success Coordinator · SupplyNow</p>
+          <p class="focus">On site at your Restaurant Depot · online ordering, pickup &amp; delivery</p>
           <p class="reach">330-523-8748 · kyle@supplynow.org</p>
         </div>
       </div>
@@ -279,18 +315,18 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
   </div>
 </section>
 
-<section class="hero" aria-label="Restaurant Depot delivery">
+<section class="hero" aria-label="Restaurant Depot online ordering with SupplyNow">
   <canvas id="field" aria-hidden="true"></canvas>
   <div class="hero-shade" aria-hidden="true"></div>
   <p class="hint" aria-hidden="true"><i></i>Move across the field. Each pass is a door opening. Watch it recover.</p>
   <div class="wrap grid">
     <div>
-      <p class="eyebrow">Restaurant Depot delivery · by SupplyNow</p>
-      <h2 class="h1">You shop Restaurant Depot. <em>We bring it in.</em></h2>
-      <p class="sub" id="hero-sub">Place your Restaurant Depot order online for pickup. SupplyNow collects it at the depot and delivers it to <b id="hero-who">your restaurant near the Cleveland Restaurant Depot</b> on our own trucks, refrigerated and frozen kept cold the whole way.</p>
+      <p class="eyebrow">Met Kyle at Restaurant Depot? Start here.</p>
+      <h2 class="h1">Stop shopping the aisles. <em>We’ll have it ready, or at your door.</em></h2>
+      <p class="sub" id="hero-sub">Kyle works inside your Restaurant Depot, helping members switch to online ordering. You order on RestaurantDepot.com, and SupplyNow's team selects every item and has it <b id="hero-how">ready for you at the Cleveland Restaurant Depot</b>. No aisles, no carts, no waiting in line.</p>
       <div class="pills">
-        <a class="pill yellow" href="https://www.restaurantdepot.com" target="_blank" rel="noopener">Order on Restaurant Depot <svg viewBox="0 0 24 24"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
-        <a class="pill" href="#ask" id="hero-ask">Ask Kyle a question</a>
+        <a class="pill yellow" href="#start">Get set up with Kyle <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="pill" href="https://www.restaurantdepot.com" target="_blank" rel="noopener">Order on RestaurantDepot.com ↗</a>
       </div>
     </div>
   </div>
@@ -305,18 +341,13 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
           <option value="deli or market">deli or market</option>
           <option value="school or institution">school or institution</option>
         </select></span>
-        and want
-        <span class="pick"><select id="t-freq" aria-label="How often">
-          <option value="weekly">weekly</option>
-          <option value="twice-weekly">twice-weekly</option>
-          <option value="one-time">one-time</option>
+        and want my order
+        <span class="pick"><select id="t-type" aria-label="Pickup or delivery">
+          <option value="pickup">ready for pickup</option>
+          <option value="delivery">delivered</option>
         </select></span>
-        deliveries from the
-        <span class="pick"><select id="t-where" aria-label="Which Restaurant Depot">
-          <option value="Cleveland">Cleveland</option>
-          <option value="Wilkes-Barre">Wilkes-Barre</option>
-          <option value="Pittsburgh">Pittsburgh</option>
-        </select></span>
+        from the
+        <span class="pick"><select id="t-where" aria-label="Restaurant Depot location"><option value="Cleveland">Cleveland</option><option value="Akron">Akron</option><option value="Columbus">Columbus</option><option value="Indianapolis">Indianapolis</option><option value="Pittsburgh">Pittsburgh</option><option value="Wilkes-Barre">Wilkes-Barre</option><option value="Troy">Troy</option><option value="Ypsilanti">Ypsilanti</option><option value="Dearborn">Dearborn</option></select></span>
         Restaurant Depot.
       </p>
       <button class="reset" type="button" id="t-reset">Reset</button>
@@ -324,37 +355,93 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
   </div>
 </section>
 
-<section class="section" id="how">
+<section class="section" id="ways">
   <div class="wrap">
     <div class="head" data-reveal>
-      <p class="eyebrow">How ordering works</p>
-      <h2>Order the way you already do. Skip the trip.</h2>
-      <p class="lede">Restaurant Depot runs the store, the prices and your membership. SupplyNow handles the drive. Four steps from your list to your back door.</p>
+      <p class="eyebrow">Two ways to get your order</p>
+      <h2>Hand us the shopping. Choose how it gets to you.</h2>
+      <p class="lede">Every online order starts on RestaurantDepot.com, and our team selects and prepares it inside the depot. At checkout you choose pickup or delivery. Here is what changes from shopping in-store.</p>
+    </div>
+    <div class="ways" data-reveal>
+      <article class="way today">
+        <div class="way-top"><span class="ic"><svg viewBox="0 0 32 32"><path d="M4 6h3l3 14h14l3-10H9"/><circle cx="12" cy="25" r="2"/><circle cx="22" cy="25" r="2"/></svg></span><div><span class="tag">How most members shop today</span><h3>In-store</h3></div></div>
+        <p class="what">You do every step yourself, and it all comes out of your day.</p>
+        <ul class="chores">
+          <li>Drive to the depot and park</li>
+          <li>Walk the aisles and hunt for items</li>
+          <li>Load the cart and the flatbed</li>
+          <li>Wait in line to check out</li>
+          <li>Load your vehicle, drive back, unload</li>
+        </ul>
+        <p class="arrow">Online ordering hands these steps to us →</p>
+      </article>
+      <article class="way" id="way-pickup">
+        <div class="way-top"><span class="ic"><svg viewBox="0 0 32 32"><path d="M5 12h22l-2 15H7z"/><path d="M11 12V9a5 5 0 0 1 10 0v3"/></svg></span><div><span class="tag">Fulfillment type 1</span><h3>Pickup</h3></div></div>
+        <p class="what">Your order is selected, checked and staged before you arrive. You come to the depot and leave with it.</p>
+        <ol class="flow">
+          <li><b>Order online</b>Shop RestaurantDepot.com and choose pickup, with the date and time that suit you.</li>
+          <li><b>We pull it</b>Our selectors pick every item on your order, cold and frozen kept in temperature.</li>
+          <li><b>It's waiting</b>Your order is staged and ready when you arrive. Grab it and get back to work.</li>
+        </ol>
+        <div class="best"><span class="tag">Best for</span><p>Owners already passing the depot, smaller or last-minute orders, and anyone who wants their order in hand today.</p></div>
+        <ul class="gains"><li>Skip the aisles, carts and lines</li><li>No more hunting for out-of-place items</li><li>In and out, with no time lost in the aisles</li></ul>
+      </article>
+      <article class="way" id="way-delivery">
+        <div class="way-top"><span class="ic"><svg viewBox="0 0 32 32"><path d="M3 21V10h14v11M17 14h6l4 4v3h-3"/><circle cx="9" cy="23" r="2.5"/><circle cx="22" cy="23" r="2.5"/></svg></span><div><span class="tag">Fulfillment type 2</span><h3>Delivery</h3></div></div>
+        <p class="what">Your order is selected, loaded and brought to your door on SupplyNow trucks. Nobody on your team leaves the building.</p>
+        <ol class="flow">
+          <li><b>Order online</b>Shop RestaurantDepot.com and choose delivery at checkout.</li>
+          <li><b>We pull and load it</b>Selected, checked and loaded onto temperature-controlled trucks.</li>
+          <li><b>At your door</b>Delivered to your business with proof of delivery, cold chain intact.</li>
+        </ol>
+        <div class="best"><span class="tag">Best for</span><p>Busy kitchens, bigger and recurring orders, and teams that can't spare a person or a vehicle for the depot run.</p></div>
+        <ul class="gains"><li>Your staff stays in the kitchen</li><li>No vehicle, fuel or loading on your end</li><li>Same days, same window, week after week</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="start">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <p class="eyebrow">Getting started</p>
+      <h2>From first visit to first order. Kyle walks you through it.</h2>
+      <p class="lede">Everything you need to do, in order. Kyle can do most of it with you right there in the store, or over the phone.</p>
     </div>
     <ol class="steps" data-reveal>
-      <li><b>Be a member</b><p>Restaurant Depot membership is free for qualifying businesses. Apply online, then finish at the warehouse with your sales tax license or resale certificate, or a business license, plus proof you can buy for the business.</p><a href="https://www.restaurantdepot.com/membership" target="_blank" rel="noopener">Membership sign-up ↗</a></li>
-      <li><b>Order online for pickup</b><p>Shop on the Restaurant Depot website or app and choose a pickup date and time at your depot. Online prices and any pickup fees are set by Restaurant Depot.</p><a href="https://www.restaurantdepot.com" target="_blank" rel="noopener">Start an order ↗</a></li>
-      <li><b>Send Kyle the details</b><p>Email or text your order number, pickup window and anything we should know at the dock. For a standing order, set it up once with Kyle.</p><a href="#ask">Send order details →</a></li>
-      <li><b>We pick up and deliver</b><p>Our driver collects the order at the depot, keeps cold and frozen product in temperature, and delivers to your door with proof of delivery.</p><a href="#services">What we handle →</a></li>
+      <li><b>Be a Restaurant Depot member</b><p>Membership is free for qualifying businesses. Apply online, then finish at your depot with a sales tax license or resale certificate, or a business license, plus proof you can buy for the business.</p><a href="https://www.restaurantdepot.com/membership" target="_blank" rel="noopener">Membership sign-up ↗</a></li>
+      <li><b>Create your online account</b><p>Set up your account on RestaurantDepot.com or the app with your membership. Find Kyle in the depot and he'll set it up with you on your phone in a few minutes.</p><a href="#ask">Get help with sign-up →</a></li>
+      <li><b>Place your first order</b><p>Build your list, pick your depot, and choose pickup or delivery at checkout. Save your list so the next order takes minutes.</p><a href="https://www.restaurantdepot.com" target="_blank" rel="noopener">Start an order ↗</a></li>
+      <li><b>Kyle follows up</b><p>After your first order Kyle checks in: what went well, what to fix, and how to set up repeat orders that fit your week.</p><a href="#ask">Talk to Kyle →</a></li>
     </ol>
   </div>
 </section>
 
-<section class="section alt" id="services">
+<section class="section" id="value">
   <div class="wrap">
     <div class="head" data-reveal>
-      <p class="eyebrow">What we handle</p>
-      <h2>The depot run, off your plate.</h2>
-      <p class="lede">The time your team spends driving, loading and unloading goes back into the kitchen.</p>
+      <p class="eyebrow">Why order online with us</p>
+      <h2>Your time back, and an order you can count on.</h2>
     </div>
     <div class="cards" data-reveal>
-      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M3 21V10h14v11M17 14h6l4 4v3h-3"/><circle cx="9" cy="23" r="2.5"/><circle cx="22" cy="23" r="2.5"/></svg></span><h3>Depot pickup &amp; delivery</h3><p>We collect your Restaurant Depot order at the warehouse and bring it straight to you. No detours through anyone else's stops first.</p></article>
-      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M13 19V6a3 3 0 0 1 6 0v13a5 5 0 1 1-6 0z"/><path d="M16 11v10"/><path d="M23 8h4M23 12h3M23 16h4"/></svg></span><h3>Cold chain kept</h3><p>Refrigerated and frozen product rides in temperature-controlled trucks, handled to HACCP food-safety standards from dock to door.</p></article>
-      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M6 12a10 10 0 0 1 18-3M26 20a10 10 0 0 1-18 3"/><path d="M24 4v5h-5M8 28v-5h5"/></svg></span><h3>Standing deliveries</h3><p>Same days, same window, every week. Set your schedule once and we work it around your receiving hours.</p></article>
-      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><rect x="5" y="14" width="10" height="10" rx="1"/><rect x="17" y="14" width="10" height="10" rx="1"/><rect x="11" y="4" width="10" height="10" rx="1"/><path d="M3 27h26"/></svg></span><h3>Big orders welcome</h3><p>Cases, bulk and pallets. Lift gates and pallet jacks on our trucks, so a full restock is as easy as a small top-up.</p></article>
-      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="9"/><circle cx="16" cy="16" r="3"/><path d="M16 2v5M16 25v5M2 16h5M25 16h5"/></svg></span><h3>Know where it is</h3><p>Live tracking and a digital proof of delivery, so you know when to expect the truck and what was signed for.</p></article>
-      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="11" r="5"/><path d="M6 28a10 10 0 0 1 20 0"/></svg></span><h3>One person to call</h3><p>Kyle is your contact for scheduling, order details and anything that changes. Call, text or email and a person answers.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg></span><h3>Hours back every week</h3><p>The shopping, loading and driving come off your plate. That time goes back into prep, service and running the business.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M8 3h12l6 6v20H8z"/><path d="M20 3v6h6M12 19l3 3 6-7"/></svg></span><h3>Picked by people who know the store</h3><p>Trained selectors work your depot every day. They know where everything is and pick to your list.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M13 19V6a3 3 0 0 1 6 0v13a5 5 0 1 1-6 0z"/><path d="M16 11v10"/><path d="M23 8h4M23 12h3M23 16h4"/></svg></span><h3>Cold chain kept</h3><p>Refrigerated and frozen product is handled to HACCP food-safety standards, from the shelf to pickup or to your door.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M6 12a10 10 0 0 1 18-3M26 20a10 10 0 0 1-18 3"/><path d="M24 4v5h-5M8 28v-5h5"/></svg></span><h3>Built for repeat orders</h3><p>Saved lists and a regular rhythm turn your weekly restock into a few minutes online.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M16 29s9-8.5 9-15a9 9 0 0 0-18 0c0 6.5 9 15 9 15z"/><circle cx="16" cy="14" r="3.2"/></svg></span><h3>A team inside your depot</h3><p>SupplyNow works inside the Restaurant Depot locations we serve, so help is in the building when you need it.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="11" r="5"/><path d="M6 28a10 10 0 0 1 20 0"/></svg></span><h3>One person to call</h3><p>Kyle handles set-up, questions and anything that goes sideways. Call, text or email and a person answers.</p></article>
     </div>
+  </div>
+</section>
+
+<section class="section alt" id="locations">
+  <div class="wrap split top">
+    <div data-reveal>
+      <p class="eyebrow">Where we fulfill</p>
+      <h2>Nine Restaurant Depot locations. Four states.</h2>
+      <p class="lede">Pickup and delivery orders placed on RestaurantDepot.com at these depots are selected and fulfilled by SupplyNow.</p>
+    </div>
+    <div class="states" data-reveal><div class="state"><span class="tag">Ohio</span><ul><li>Cleveland</li><li>Akron</li><li>Columbus</li></ul></div><div class="state"><span class="tag">Indiana</span><ul><li>Indianapolis</li></ul></div><div class="state"><span class="tag">Pennsylvania</span><ul><li>Pittsburgh</li><li>Wilkes-Barre</li></ul></div><div class="state"><span class="tag">Michigan</span><ul><li>Troy</li><li>Ypsilanti</li><li>Dearborn</li></ul></div></div>
   </div>
 </section>
 
@@ -362,16 +449,15 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
   <div class="wrap">
     <div class="head" data-reveal>
       <p class="eyebrow">Resources</p>
-      <h2>Everything you need to order.</h2>
-      <p class="lede">Restaurant Depot's own pages for membership and ordering, and ours for delivery.</p>
+      <h2>Everything you need, in one place.</h2>
     </div>
     <div class="res" data-reveal>
-      <a href="https://www.restaurantdepot.com/membership" target="_blank" rel="noopener"><b>Become a member</b><span>Free membership for qualifying businesses, and what to bring to the warehouse.</span><i>restaurantdepot.com ↗</i></a>
-      <a href="https://www.restaurantdepot.com" target="_blank" rel="noopener"><b>Shop and order online</b><span>Browse, build lists and place an order for pickup on the website or app.</span><i>restaurantdepot.com ↗</i></a>
-      <a href="https://www.restaurantdepot.com/resources/click-collect" target="_blank" rel="noopener"><b>Click &amp; Collect</b><span>How online pickup orders work: choose a date and time, and it's ready at the depot.</span><i>restaurantdepot.com ↗</i></a>
-      <a href="https://www.restaurantdepot.com/customer-service/faq's" target="_blank" rel="noopener"><b>Restaurant Depot FAQ</b><span>Membership, pricing, online orders and store questions, answered by Restaurant Depot.</span><i>restaurantdepot.com ↗</i></a>
-      <a href="#ask"><b>Set up delivery with Kyle</b><span>Tell us your depot, delivery days and receiving hours. We'll take it from there.</span><i>Ask Kyle →</i></a>
-      <a href="../"><b>More about SupplyNow</b><span>Our trucks, lanes, tracking and carrier paperwork, from our COO Mike Cook.</span><i>supplynow ↗</i></a>
+      <a href="https://www.restaurantdepot.com/membership" target="_blank" rel="noopener"><b>Become a member</b><span>Free membership for qualifying businesses, and what to bring to the depot.</span><i>restaurantdepot.com ↗</i></a>
+      <a href="https://www.restaurantdepot.com" target="_blank" rel="noopener"><b>Shop and order online</b><span>Browse, build saved lists and check out with pickup or delivery.</span><i>restaurantdepot.com ↗</i></a>
+      <a href="https://www.restaurantdepot.com/resources/click-collect" target="_blank" rel="noopener"><b>How online pickup works</b><span>Restaurant Depot's guide to ordering online and collecting at the depot.</span><i>restaurantdepot.com ↗</i></a>
+      <a href="https://www.restaurantdepot.com/customer-service/faq's" target="_blank" rel="noopener"><b>Restaurant Depot FAQ</b><span>Membership, accounts and store questions, answered by Restaurant Depot.</span><i>restaurantdepot.com ↗</i></a>
+      <a href="#ask"><b>One-on-one set-up help</b><span>Kyle can walk you through sign-up, your first order and saved lists.</span><i>Ask Kyle →</i></a>
+      <a href="../"><b>More about SupplyNow</b><span>Our team, trucks and tracking, from our COO Mike Cook.</span><i>supplynow ↗</i></a>
     </div>
   </div>
 </section>
@@ -380,20 +466,20 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
   <div class="wrap split">
     <div data-reveal>
       <p class="eyebrow">Who is SupplyNow?</p>
-      <h2>Your delivery partner. Not the store.</h2>
-      <p class="lede">SupplyNow is an asset-based carrier out of Cleveland, Ohio. We run refrigerated, frozen and dry freight on our own trucks with our own drivers, with live GPS and temperature tracking on every load.</p>
-      <p class="lede">Restaurant Depot is where you shop. SupplyNow is how it gets to you. Your membership, products and prices stay with Restaurant Depot; the pickup, the drive and the delivery are ours.</p>
+      <h2>The team behind your online order.</h2>
+      <p class="lede">SupplyNow runs online order fulfillment at nine Restaurant Depot locations in Ohio, Indiana, Pennsylvania and Michigan. When you order on RestaurantDepot.com, our people select and prepare it in the store, then stage it for pickup or deliver it on our own trucks.</p>
+      <p class="lede">Your membership, account and products are with Restaurant Depot. Getting your order picked, ready and to you is what we do.</p>
     </div>
     <div class="record" data-reveal>
-      <span class="flag">Carrier record</span>
-      <div class="top"><b>Supply Now Inc.</b><span>Cleveland, OH</span></div>
+      <span class="flag">SupplyNow</span>
+      <div class="top"><b>Online order fulfillment</b><span>Est. Cleveland, OH</span></div>
       <div class="cells">
-        <div><span class="tag">Authority</span><b>MC 1660872</b></div>
-        <div><span class="tag">Status</span><b class="ok">Active</b></div>
-        <div><span class="tag">USDOT</span><b>3976910</b></div>
-        <div><span class="tag">Freight</span><b>Frozen · Chilled · Dry</b></div>
+        <div><span class="tag">Locations</span><b>9 depots</b></div>
+        <div><span class="tag">States</span><b>OH · IN · PA · MI</b></div>
+        <div><span class="tag">Fulfillment</span><b>Pickup · Delivery</b></div>
+        <div><span class="tag">Product</span><b>Frozen · Chilled · Dry</b></div>
       </div>
-      <p class="notes">Asset-based: our trucks, our drivers, no broker daisy-chain.</p>
+      <p class="notes">Selection, preparation and delivery by SupplyNow's own team and trucks.</p>
     </div>
   </div>
 </section>
@@ -410,12 +496,13 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
       </div>
     </div>
     <div class="faq" data-reveal>
-      <details><summary>Is SupplyNow part of Restaurant Depot?</summary><p>No. SupplyNow is an independent delivery company. Restaurant Depot handles your membership, products, prices and orders; we pick up your order and deliver it.</p></details>
-      <details><summary>Do I need a Restaurant Depot membership?</summary><p>Yes. Orders are placed under your own Restaurant Depot membership, which is free for qualifying businesses. Restaurant Depot's membership page lists what to bring to the warehouse.</p></details>
-      <details><summary>How do I place an order?</summary><p>Order on the Restaurant Depot website or app and choose pickup at your depot. Then send Kyle the order number and pickup time, or set up a standing schedule once.</p></details>
-      <details><summary>What does delivery cost?</summary><p>Kyle will quote the delivery fee for your location and order size. Restaurant Depot sets its own online prices and any pickup fees, separately from ours.</p></details>
-      <details><summary>Can you keep frozen and refrigerated items cold?</summary><p>Yes. Cold and frozen product rides in temperature-controlled trucks and is handled to HACCP food-safety standards.</p></details>
-      <details><summary>Which Restaurant Depot locations do you serve?</summary><p>We're based in Cleveland and growing. Ask Kyle about your depot and delivery area.</p></details>
+      <details><summary>Who is SupplyNow, and how are you connected to Restaurant Depot?</summary><p>SupplyNow is the team that selects, prepares and fulfills online orders at nine Restaurant Depot locations. You order and keep your account with Restaurant Depot; we pick your order and get it to you.</p></details>
+      <details><summary>Do I need a Restaurant Depot membership?</summary><p>Yes. Online orders are placed under your Restaurant Depot membership, which is free for qualifying businesses. See "Getting started" above for what to bring.</p></details>
+      <details><summary>How do I place an order?</summary><p>On RestaurantDepot.com or the app. Choose your depot, build your list, and pick pickup or delivery at checkout. Kyle can walk you through your first one.</p></details>
+      <details><summary>Pickup or delivery: which is right for me?</summary><p>Pickup suits owners who pass the depot anyway or need something today. Delivery suits busy kitchens, larger and recurring orders, and teams without a spare person or vehicle. You choose each time you check out.</p></details>
+      <details><summary>Do you keep frozen and refrigerated items cold?</summary><p>Yes. Cold and frozen product is handled to HACCP food-safety standards for both pickup and delivery.</p></details>
+      <details><summary>Which locations do you serve?</summary><p>Cleveland, Akron and Columbus, Ohio; Indianapolis, Indiana; Pittsburgh and Wilkes-Barre, Pennsylvania; and Troy, Ypsilanti and Dearborn, Michigan.</p></details>
+      <details><summary>Something's wrong with my order. Who do I contact?</summary><p>Kyle. Call or text 330-523-8748 or email kyle@supplynow.org with your order details and he'll make it right with the team.</p></details>
     </div>
   </div>
 </section>
@@ -424,31 +511,31 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
   <div class="wrap split top">
     <div data-reveal>
       <p class="eyebrow">Ask Kyle</p>
-      <h2>Questions, order details, a standing schedule.</h2>
-      <p class="lede">Send it here and it goes straight to Kyle's inbox. Include your Restaurant Depot order number if you have one.</p>
+      <h2>Questions, set-up help, or something we should know.</h2>
+      <p class="lede">Send it here and it goes straight to Kyle's inbox. He follows up within 24 hours.</p>
       <p class="lede" style="font-size:16px">Prefer to talk? <a href="tel:+13305238748"><b>Call or text 330-523-8748</b></a></p>
     </div>
     <form class="form" id="ask-form" aria-label="Email Kyle" data-reveal>
       <div class="field">
-        <label for="topic">What's it about?</label>
+        <label for="topic">What can Kyle help with?</label>
         <select id="topic">
-          <option>Set up Restaurant Depot delivery</option>
-          <option>Order details for a pickup</option>
-          <option>Standing weekly delivery</option>
-          <option>Delivery pricing</option>
-          <option>Membership or ordering help</option>
+          <option>Help setting up my online account</option>
+          <option>Questions about pickup</option>
+          <option>Questions about delivery</option>
+          <option>Help with an order</option>
+          <option>Setting up repeat orders</option>
           <option>Something else</option>
         </select>
       </div>
       <div class="row2">
         <div class="field"><label for="biz">Business name</label><input id="biz" type="text" autocomplete="organization"></div>
-        <div class="field"><label for="order">RD order # (optional)</label><input id="order" type="text"></div>
+        <div class="field"><label for="depot">Your Restaurant Depot</label><select id="depot"><option value="Cleveland">Cleveland</option><option value="Akron">Akron</option><option value="Columbus">Columbus</option><option value="Indianapolis">Indianapolis</option><option value="Pittsburgh">Pittsburgh</option><option value="Wilkes-Barre">Wilkes-Barre</option><option value="Troy">Troy</option><option value="Ypsilanti">Ypsilanti</option><option value="Dearborn">Dearborn</option></select></div>
       </div>
       <div class="row2">
-        <div class="field"><label for="depot">Restaurant Depot location</label><input id="depot" type="text" value="Cleveland"></div>
-        <div class="field"><label for="when">Pickup / delivery window</label><input id="when" type="text" placeholder="e.g. Mon &amp; Wed, before 10am"></div>
+        <div class="field"><label for="ftype">Pickup or delivery</label><select id="ftype"><option>Pickup</option><option>Delivery</option><option>Not sure yet</option></select></div>
+        <div class="field"><label for="order">Order # (if about an order)</label><input id="order" type="text"></div>
       </div>
-      <div class="field"><label for="msg">Your question or details</label><textarea id="msg" required placeholder="Receiving hours, dock notes, cold or frozen items, anything we should know."></textarea></div>
+      <div class="field"><label for="msg">Your question or details</label><textarea id="msg" required placeholder="What you need help with, your usual order days, anything we should know."></textarea></div>
       <div class="field"><label for="from">Your name and phone or email</label><input id="from" type="text" autocomplete="name"></div>
       <button type="submit" class="pill solid">Email Kyle <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
       <p class="hint2">Opens your email app with the message ready to send to kyle@supplynow.org.</p>
@@ -464,8 +551,7 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
     <div class="cols">
       <div>
         <img src="../assets/supplynow-wordmark-light.png" alt="SupplyNow" width="438" height="67" style="height:24px;width:auto">
-        <p style="margin-top:18px">Restaurant Depot pickup and delivery from Cleveland, OH.</p>
-        <p style="margin-top:10px">Supply Now Inc. · MC 1660872 · USDOT 3976910</p>
+        <p style="margin-top:18px">Online order pickup and delivery at nine Restaurant Depot locations in Ohio, Indiana, Pennsylvania and Michigan.</p>
       </div>
       <div>
         <h4>Kyle Kuczynski</h4>
@@ -481,15 +567,15 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
       </div>
       <div>
         <h4>On this page</h4>
-        <a href="#how">How it works</a>
-        <a href="#services">What we handle</a>
-        <a href="#faq">Questions</a>
+        <a href="#ways">Pickup &amp; delivery</a>
+        <a href="#start">Getting started</a>
+        <a href="#locations">Locations</a>
         <a href="../">About SupplyNow</a>
       </div>
     </div>
     <div class="legal">
-      <span>© <span id="yr">2026</span> Supply Now Inc. · Asset-based carrier · Cleveland, OH</span>
-      <span>SupplyNow is an independent delivery company and is not affiliated with, sponsored or endorsed by Restaurant Depot. Restaurant Depot is a trademark of its owner, used here only to describe the stores we deliver from.</span>
+      <span>© <span id="yr">2026</span> Supply Now Inc.</span>
+      <span>SupplyNow is an independent company that fulfills online orders at the Restaurant Depot locations listed. Restaurant Depot is a trademark of its owner.</span>
     </div>
   </div>
 </footer>
@@ -523,29 +609,31 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
   ov.addEventListener("click", function(e){ if (e.target === ov || e.target.closest("#results a")) close(); });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape") close(); });
 
-  // tune this site: rewrites the hero line and pre-fills the question form
-  var tw = $("t-who"), tf = $("t-freq"), tl = $("t-where");
+  // tune this site: rewrites the hero line, highlights the matching fulfillment type, pre-fills the form
+  var tw = $("t-who"), tt = $("t-type"), tl = $("t-where");
   var meter = document.createElement("span");
   meter.style.cssText = "position:absolute;visibility:hidden;white-space:pre;left:-9999px";
   document.body.appendChild(meter);
   function fit(){
-    [tw, tf, tl].forEach(function(s){
+    [tw, tt, tl].forEach(function(s){
       var cs = getComputedStyle(s); meter.style.font = cs.font; meter.style.letterSpacing = cs.letterSpacing;
       meter.textContent = s.options[s.selectedIndex].text;
       s.style.width = Math.ceil(meter.getBoundingClientRect().width + 38) + "px";
     });
   }
   function tune(){
-    $("hero-who").textContent = "your " + tw.value + " near the " + tl.value + " Restaurant Depot";
+    var pick = tt.value === "pickup";
+    $("hero-how").textContent = pick ? "ready for you at the " + tl.value + " Restaurant Depot" : "delivered from the " + tl.value + " Restaurant Depot to your " + tw.value;
+    $("way-pickup").classList.toggle("on", pick);
+    $("way-delivery").classList.toggle("on", !pick);
     $("depot").value = tl.value;
-    $("topic").value = tf.value === "one-time" ? "Set up Restaurant Depot delivery" : "Standing weekly delivery";
-    $("when").placeholder = tf.value === "twice-weekly" ? "e.g. Mon & Thu, before 10am" : tf.value === "weekly" ? "e.g. Tuesdays, before 10am" : "e.g. this Friday, after 2pm";
+    $("ftype").value = pick ? "Pickup" : "Delivery";
   }
-  [tw, tf, tl].forEach(function(s){ s.addEventListener("change", function(){ tune(); fit(); }); });
-  $("t-reset").addEventListener("click", function(){ tw.selectedIndex = 0; tf.selectedIndex = 0; tl.selectedIndex = 0; tune(); fit(); });
+  [tw, tt, tl].forEach(function(s){ s.addEventListener("change", function(){ tune(); fit(); }); });
+  $("t-reset").addEventListener("click", function(){ tw.selectedIndex = 0; tt.selectedIndex = 0; tl.selectedIndex = 0; tune(); fit(); });
   window.addEventListener("resize", fit);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
-  fit();
+  fit(); tune();
 
   var els = [].slice.call(document.querySelectorAll("[data-reveal]"));
   if (!("IntersectionObserver" in window)) els.forEach(function(e){ e.classList.add("in"); });
@@ -556,16 +644,14 @@ footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255
 
   $("ask-form").addEventListener("submit", function(e){
     e.preventDefault();
-    var lines = [
-      "Topic: " + $("topic").value,
-      $("biz").value ? "Business: " + $("biz").value : "",
-      $("order").value ? "RD order #: " + $("order").value : "",
-      "Restaurant Depot: " + $("depot").value,
-      $("when").value ? "Window: " + $("when").value : "",
-      "", $("msg").value, "",
-      $("from").value ? "From: " + $("from").value : ""
-    ].filter(function(l, i){ return l !== "" || i === 5 || i === 7; });
-    location.href = "mailto:kyle@supplynow.org?subject=" + encodeURIComponent($("topic").value + ($("biz").value ? " — " + $("biz").value : "")) + "&body=" + encodeURIComponent(lines.join("\n"));
+    var v = function(id){ return $(id).value.trim(); };
+    var lines = ["Topic: " + v("topic")];
+    if (v("biz")) lines.push("Business: " + v("biz"));
+    lines.push("Restaurant Depot: " + v("depot"), "Fulfillment: " + v("ftype"));
+    if (v("order")) lines.push("Order #: " + v("order"));
+    lines.push("", v("msg"));
+    if (v("from")) lines.push("", "From: " + v("from"));
+    location.href = "mailto:kyle@supplynow.org?subject=" + encodeURIComponent(v("topic") + (v("biz") ? " — " + v("biz") : "")) + "&body=" + encodeURIComponent(lines.join("\n"));
     $("sent").style.display = "block";
   });
 })();
