@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b2350">
+<title>Kyle Kuczynski · SupplyNow</title>
+<meta name="description" content="Kyle Kuczynski, Customer Success Coordinator at SupplyNow. Order on RestaurantDepot.com and SupplyNow selects your order for pickup or delivers it, at nine Restaurant Depot locations.">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
+<script>
+  try { var t = localStorage.getItem("sn-kyle-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+  document.documentElement.classList.add("js");
+</script>
+<style>
+/* Kyle's page: same build as Mike's (header, contact card, contour hero, record cards, tune bar),
+   recolored for Restaurant Depot shoppers: navy and royal blue with a warm yellow, on a light page. */
+:root,:root[data-theme="light"]{
+  --bg:#f4f6fb; --bg-2:#e9eef7; --card:#ffffff; --card-2:#f2f5fb; --line:rgba(11,35,80,.1); --line-2:rgba(11,35,80,.2);
+  --ink:#0d1a30; --ink-2:#3d4b63; --ink-3:#6b7891;
+  --navy:#0b2350; --navy-2:#102e66; --blue:#1d5fd6; --sky:#5aa7ff; --yellow:#ffc93c; --amber:#f2a516; --green:#14895b;
+  --btn:#0b2350; --btn-ink:#ffffff; --accent:var(--blue);
+  --sans:"Archivo",ui-sans-serif,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --gutter:clamp(16px,1.9vw,32px);
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --bg:#0a1430; --bg-2:#0e1a3c; --card:#101c40; --card-2:#0c1736; --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.18);
+  --ink:#f2f5fb; --ink-2:#b9c4da; --ink-3:#8593b0; --blue:#5aa7ff; --btn:#ffc93c; --btn-ink:#0b2350; --accent:#ffc93c;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img,svg,canvas{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.03em;line-height:1;text-wrap:balance}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:100%;padding-inline:var(--gutter);margin-inline:auto;max-width:1560px}
+
+.eyebrow{display:flex;align-items:center;gap:14px;font:500 clamp(12px,1vw,14px)/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:20px}
+.eyebrow::before{content:"";flex:none;width:30px;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--sky) 55%,var(--yellow))}
+.tag{font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:clamp(52px,4.2vw,62px);padding:0 clamp(22px,2vw,30px);border-radius:999px;
+  font:700 clamp(16px,1.3vw,18px)/1 var(--sans);text-decoration:none;border:1.5px solid var(--line-2);color:var(--ink);background:transparent;cursor:pointer;transition:transform .15s,border-color .15s,background .15s}
+.pill:hover{transform:translateY(-1px);border-color:var(--ink-3)}
+.pill.solid{background:var(--btn);color:var(--btn-ink);border-color:var(--btn)}
+.pill.yellow{background:var(--yellow);color:#0b2350;border-color:var(--yellow)}
+.pill svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.pills{display:flex;flex-wrap:wrap;gap:12px}
+
+/* header */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--navy);color:#fff;border-bottom:1px solid rgba(255,255,255,.08)}
+.bar .wrap{display:flex;align-items:center;gap:12px;min-height:78px}
+.logo img{height:26px;width:auto;max-width:none}
+.icons{display:flex;gap:10px;margin-left:auto}
+.round{width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;display:grid;place-items:center;cursor:pointer;color:#fff;text-decoration:none}
+.round:hover{border-color:rgba(255,255,255,.6)}
+.round svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.overlay{position:fixed;inset:0;z-index:60;background:rgba(11,35,80,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:none;padding:110px 24px 24px}
+.overlay.open{display:block}
+.panel{width:min(640px,100%);margin-inline:auto;background:var(--card);color:var(--ink);border:1px solid var(--line-2);border-radius:20px;padding:18px;box-shadow:0 30px 80px rgba(0,0,0,.3)}
+.panel input{width:100%;min-height:52px;border-radius:12px;border:1px solid var(--line-2);background:var(--card-2);padding:0 16px;font-size:18px}
+.panel ul{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:2px}
+.panel a{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:10px;text-decoration:none}
+.panel a:hover,.panel a:focus-visible{background:var(--card-2)}
+.panel a span{font:500 12px var(--mono);letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase}
+.panel .close{float:right;margin:-4px -4px 8px 8px;color:var(--ink);border-color:var(--line-2)}
+
+/* contact card */
+.contact{padding-block:clamp(16px,1.9vw,28px);background:var(--bg-2);border-bottom:1px solid var(--line)}
+.ccard{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px 32px;background:var(--card);border:1px solid var(--line-2);border-radius:22px;padding:clamp(20px,2vw,30px);box-shadow:0 10px 30px rgba(11,35,80,.06)}
+.ccard .who{display:flex;align-items:center;gap:20px;min-width:0}
+.avatar{flex:none;width:72px;height:72px;border-radius:50%;display:grid;place-items:center;font:800 26px/1 var(--sans);color:#0b2350;background:linear-gradient(135deg,var(--sky),var(--blue) 45%,var(--yellow))}
+.ccard .name{font-size:clamp(30px,2.8vw,44px)}
+.ccard .role{margin-top:8px;font:600 clamp(12px,.95vw,14px)/1.3 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+.ccard .focus{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:6px 12px;border-radius:999px;background:rgba(255,201,60,.22);color:#6b4a00;font:600 12.5px/1 var(--mono);letter-spacing:.04em}
+:root[data-theme="dark"] .ccard .focus{color:var(--yellow)}
+.ccard .focus::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--amber)}
+.ccard .reach{margin-top:10px;font:400 14px/1.4 var(--mono);color:var(--ink-3)}
+.ccard .links{display:flex;flex-wrap:wrap;gap:10px}
+.ccard .pill{min-height:52px;padding:0 24px;font-size:17px}
+
+/* hero */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#0a1d44;color:#f2f5fb}
+#field{position:absolute;inset:0;z-index:-2;width:100%;height:100%}
+.hero-shade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(10,29,68,.78) 0%,rgba(10,29,68,.55) 42%,rgba(10,29,68,.06) 72%,rgba(10,29,68,0) 100%)}
+.hint{position:absolute;top:clamp(18px,2vw,32px);right:var(--gutter);display:flex;align-items:center;gap:12px;font:400 13px/1.4 var(--mono);color:#8fa3c9;max-width:calc(100% - 48px)}
+.hint i{flex:none;width:24px;height:24px;border-radius:50%;border:1.5px dashed #8fa3c9;animation:spin 12s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero .grid{display:grid;grid-template-columns:minmax(0,64%);padding-block:clamp(110px,10vw,170px) clamp(56px,5.5vw,90px)}
+.hero .eyebrow{color:#a9b9da}
+.hero .h1{font-size:clamp(50px,6.8vw,104px);letter-spacing:-.045em;line-height:.95;font-weight:800}
+.hero .h1 em{font-style:normal;color:var(--yellow)}
+.hero .sub{margin-top:clamp(26px,3vw,44px);font-size:clamp(17px,1.45vw,22px);line-height:1.7;color:#c9d4ea;max-width:58ch}
+.hero .sub b{color:#fff;font-weight:700}
+.hero .pills{margin-top:clamp(28px,3vw,42px)}
+.hero .pill{color:#fff;border-color:rgba(255,255,255,.35)}
+.hero .pill.yellow{color:#0b2350;border-color:var(--yellow)}
+
+.tune{background:#081733;border-top:1px solid rgba(255,255,255,.08)}
+.tune .wrap{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:28px;align-items:center;padding-block:24px}
+.tune .label{display:flex;align-items:center;gap:10px;font:500 13px var(--mono);letter-spacing:.1em;color:#8fa3c9;text-transform:uppercase;white-space:nowrap}
+.tune .label::before{content:"";width:9px;height:9px;border-radius:2px;background:var(--yellow)}
+.sentence{font-size:clamp(22px,2.3vw,34px);line-height:1.4;letter-spacing:-.02em;color:#8fa3c9;font-weight:500}
+.sentence .pick{position:relative;display:inline-block}
+.sentence select{appearance:none;-webkit-appearance:none;background:transparent;border:0;border-bottom:1.5px solid rgba(255,201,60,.6);color:#fff;font:inherit;font-weight:600;letter-spacing:inherit;padding:0 32px 2px 2px;cursor:pointer;max-width:100%}
+.sentence select option{color:#0d1a30;background:#fff;font-size:16px}
+.sentence .pick::after{content:"";position:absolute;right:8px;top:50%;width:9px;height:9px;border-right:1.5px solid var(--yellow);border-bottom:1.5px solid var(--yellow);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.reset{background:none;border:0;font:500 13px var(--mono);letter-spacing:.06em;color:#8fa3c9;cursor:pointer}
+.reset:hover{color:#fff}
+
+/* two fulfillment types */
+.ways{display:grid;grid-template-columns:.85fr 1fr 1fr;gap:18px}
+.way.today{background:var(--bg-2);border-style:dashed}
+.way.today .ic{background:rgba(107,120,145,.15);color:var(--ink-3)}
+.chores{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.chores li{display:flex;gap:10px;color:var(--ink-2);text-decoration:line-through;text-decoration-color:rgba(29,95,214,.55);text-decoration-thickness:2px}
+.chores li::before{content:"";flex:none;width:8px;height:8px;margin-top:9px;border-radius:2px;background:var(--ink-3)}
+.way.today .arrow{margin-top:auto;font:600 14px var(--mono);color:var(--blue);letter-spacing:.02em}
+.way{background:var(--card);border:1px solid var(--line-2);border-radius:24px;padding:clamp(24px,2.4vw,36px);display:flex;flex-direction:column;gap:18px;transition:border-color .2s,box-shadow .2s}
+.way.on{border-color:var(--blue);box-shadow:0 0 0 3px rgba(29,95,214,.15)}
+.way-top{display:flex;align-items:center;gap:16px}
+.way .ic{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;background:rgba(29,95,214,.1);color:var(--blue)}
+#way-delivery .ic{background:rgba(255,201,60,.25);color:#8a5a00}
+.way .ic svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.way h3{font-size:clamp(30px,2.6vw,40px);margin-top:4px}
+.way .what{font-size:18px;color:var(--ink-2)}
+.flow{list-style:none;margin:0;padding:0;display:grid;gap:12px;counter-reset:f}
+.flow li{counter-increment:f;display:grid;grid-template-columns:34px 1fr;column-gap:12px;color:var(--ink-2);font-size:16px}
+.flow li::before{content:counter(f);grid-row:span 2;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font:600 13px var(--mono)}
+.flow b{color:var(--ink);font-size:17px}
+.best{padding:16px 18px;border-radius:14px;background:var(--card-2)}
+.best .tag{display:block;margin-bottom:6px}
+.best p{color:var(--ink-2);font-size:15.5px}
+.gains{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.gains li{display:flex;gap:10px;font-weight:600}
+.gains li::before{content:"";flex:none;width:18px;height:18px;margin-top:3px;border-radius:50%;background:var(--yellow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' fill='none' stroke='%230b2350' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/13px no-repeat}
+/* locations */
+.states{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.state{background:var(--bg);border:1px solid var(--line-2);border-radius:18px;padding:20px 22px}
+.state ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.state li{font-size:20px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
+.state li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+
+/* sections */
+.section{padding-block:clamp(72px,9vw,128px);border-bottom:1px solid var(--line)}
+.section.alt{background:var(--card)}
+.section h2{font-size:clamp(38px,5vw,70px);letter-spacing:-.045em;line-height:.98}
+.lede{margin-top:22px;font-size:clamp(17px,1.35vw,20px);color:var(--ink-2);max-width:60ch}
+.head{max-width:900px;margin-bottom:52px}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.split.top{align-items:start}
+
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;counter-reset:s}
+.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line-2);border-radius:20px;padding:28px 26px 30px;display:flex;flex-direction:column;gap:10px}
+.steps li::before{content:counter(s,decimal-leading-zero);font:600 14px var(--mono);color:var(--blue);margin-bottom:26px}
+.steps b{font-size:24px;letter-spacing:-.03em;line-height:1.1}
+.steps p{color:var(--ink-2);font-size:16px}
+.steps a{margin-top:auto;padding-top:10px;font:600 13px var(--mono);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--blue)}
+.steps a:hover{text-decoration:underline}
+
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line-2);border:1px solid var(--line-2);border-radius:22px;overflow:hidden}
+.card{background:var(--card);padding:30px 28px;display:flex;flex-direction:column;gap:10px;min-height:250px}
+.card .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:rgba(29,95,214,.1);color:var(--blue)}
+.card .ic svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:24px;letter-spacing:-.03em;margin-top:16px}
+.card p{color:var(--ink-2);font-size:16px}
+
+.res{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.res a{display:flex;flex-direction:column;gap:8px;padding:22px 22px 20px;border-radius:18px;background:var(--card);border:1px solid var(--line-2);text-decoration:none;transition:border-color .15s,transform .15s}
+.res a:hover{border-color:var(--blue);transform:translateY(-2px)}
+.res b{font-size:19px;letter-spacing:-.02em}
+.res span{color:var(--ink-2);font-size:15px}
+.res i{font:500 12px var(--mono);font-style:normal;letter-spacing:.06em;color:var(--blue);text-transform:uppercase;margin-top:auto;padding-top:6px}
+
+.record{position:relative;background:var(--card);border:1px solid var(--line-2);border-radius:22px;padding:26px}
+.record .flag{position:absolute;top:-15px;right:22px;display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line-2);font:600 13px/1 var(--mono);color:var(--blue)}
+.record .flag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--yellow)}
+.record .top{display:flex;justify-content:space-between;gap:12px;margin-bottom:18px}
+.record .top b{font-size:20px;letter-spacing:-.01em}
+.record .top span{font:400 14px var(--mono);color:var(--ink-3)}
+.cells{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.cells div{padding:14px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-width:0}
+.cells div:nth-child(2n){border-right:0}
+.cells div:nth-last-child(-n+2){border-bottom:0}
+.cells .tag{display:block;margin-bottom:6px}
+.cells b{display:block;font:500 16px/1.3 var(--mono);overflow-wrap:anywhere}
+.ok{color:var(--green)}
+.notes{margin-top:16px;color:var(--ink-2);font-size:15.5px}
+
+.faq details{border-bottom:1px solid var(--line-2);padding:20px 0}
+.faq details:first-child{border-top:1px solid var(--line-2)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font-size:20px;letter-spacing:-.02em;font-weight:700}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 24px/1 var(--mono);color:var(--blue);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin-top:12px;color:var(--ink-2);max-width:66ch}
+
+.form{display:grid;gap:18px;background:var(--card);border:1px solid var(--line-2);border-radius:22px;padding:28px}
+.field{display:grid;gap:8px}
+.field label{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.field input,.field select,.field textarea{width:100%;min-height:50px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line-2);background:var(--card-2);color:var(--ink);font-size:16px}
+.field textarea{min-height:130px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.hint2{font:400 13px var(--mono);color:var(--ink-3)}
+#sent{display:none;color:var(--green);font:500 14px var(--mono)}
+
+footer{background:var(--navy);color:#c3cee4;padding-block:64px 120px}
+footer .cols{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:40px}
+footer p{font-size:15px}
+footer h4{margin:0 0 14px;font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#8fa3c9}
+footer a{display:block;padding:5px 0;color:#c3cee4;text-decoration:none;font-size:15px}
+footer a:hover{color:#fff}
+footer .legal{margin-top:48px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font:400 13px/1.6 var(--mono);color:#8fa3c9;display:grid;gap:8px}
+.dock{display:none}
+
+.js [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.js [data-reveal].in{opacity:1;transform:none}
+
+@media (max-width:1060px){
+  .hero .grid{grid-template-columns:minmax(0,1fr);padding-block:100px 60px}
+  .hero-shade{background:linear-gradient(180deg,rgba(10,29,68,.35) 0%,rgba(10,29,68,.75) 45%,rgba(10,29,68,.88) 100%)}
+  .split{grid-template-columns:minmax(0,1fr);gap:44px}
+  .steps,.cards,.res{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ways{grid-template-columns:minmax(0,1fr)}
+  .tune .wrap{grid-template-columns:minmax(0,1fr);gap:10px}
+  .tune .reset{justify-self:start}
+}
+@media (max-width:760px){
+  .bar .wrap{min-height:68px}
+  .hint{display:none}
+  .hero .grid{padding-block:64px 44px}
+  .ccard{flex-direction:column;align-items:stretch}
+  .avatar{width:60px;height:60px;font-size:22px}
+  .ccard .links{display:grid;grid-template-columns:1fr 1fr 1fr}
+  .ccard .pill{padding:0 10px}
+  .steps,.cards,.res,.states{grid-template-columns:minmax(0,1fr)}
+  .card{min-height:0}
+  .row2{grid-template-columns:minmax(0,1fr)}
+  footer .cols{grid-template-columns:1fr 1fr}
+  .dock{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:8px;position:fixed;inset:auto 0 0 0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--navy);border-top:1px solid rgba(255,255,255,.12)}
+  .dock .pill{min-height:48px;padding:0 10px;font-size:16px;color:#fff;border-color:rgba(255,255,255,.3)}
+  .dock .pill.yellow{color:#0b2350}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js [data-reveal]{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="sr-only" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="logo" href="#main" aria-label="SupplyNow home"><img src="../assets/supplynow-wordmark-light.png" alt="SupplyNow" width="438" height="67"></a>
+    <div class="icons">
+      <button class="round" type="button" id="open-search" aria-label="Search this page"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
+      <button class="round" type="button" id="theme" aria-label="Switch light or dark"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></svg></button>
+      <button class="round" type="button" id="open-menu" aria-label="Open menu"><svg viewBox="0 0 24 24"><path d="M6 9.5h12M6 14.5h12"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Jump to a section">
+  <div class="panel">
+    <button class="round close" type="button" id="close-overlay" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7L7 17"/></svg></button>
+    <input id="q" type="search" placeholder="Search this page" autocomplete="off" aria-label="Search this page">
+    <ul id="results">
+      <li><a href="#ways">Pickup or delivery<span>The two ways to get your order</span></a></li>
+      <li><a href="#start">Getting started<span>Membership · account · first order</span></a></li>
+      <li><a href="#value">Why order online<span>Time back · accuracy · cold chain</span></a></li>
+      <li><a href="#locations">Locations<span>9 depots · OH · IN · PA · MI</span></a></li>
+      <li><a href="#resources">Resources<span>Membership · ordering · FAQ</span></a></li>
+      <li><a href="#who">Who is SupplyNow<span>The team behind your order</span></a></li>
+      <li><a href="#faq">Common questions<span>Accounts, orders, locations</span></a></li>
+      <li><a href="#ask">Ask Kyle<span>Set-up help and questions</span></a></li>
+      <li><a href="https://www.restaurantdepot.com" target="_blank" rel="noopener">Order on RestaurantDepot.com<span>restaurantdepot.com</span></a></li>
+      <li><a href="tel:+13305238748">Call Kyle<span>330-523-8748</span></a></li>
+      <li><a href="mailto:kyle@supplynow.org">Email Kyle<span>kyle@supplynow.org</span></a></li>
+    </ul>
+  </div>
+</div>
+
+<main id="main">
+
+<section class="contact" aria-label="Contact Kyle Kuczynski">
+  <div class="wrap">
+    <div class="ccard">
+      <div class="who">
+        <div class="avatar" aria-hidden="true">KK</div>
+        <div>
+          <h1 class="name">Kyle Kuczynski</h1>
+          <p class="role">Customer Success Coordinator · SupplyNow</p>
+          <p class="focus">On site at your Restaurant Depot · online ordering, pickup &amp; delivery</p>
+          <p class="reach">330-523-8748 · kyle@supplynow.org</p>
+        </div>
+      </div>
+      <div class="links">
+        <a class="pill solid" href="tel:+13305238748"><svg viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg>Call</a>
+        <a class="pill" href="sms:+13305238748"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg>Text</a>
+        <a class="pill" href="mailto:kyle@supplynow.org"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero" aria-label="Restaurant Depot online ordering with SupplyNow">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-shade" aria-hidden="true"></div>
+  <p class="hint" aria-hidden="true"><i></i>Move across the field. Each pass is a door opening. Watch it recover.</p>
+  <div class="wrap grid">
+    <div>
+      <p class="eyebrow">Met Kyle at Restaurant Depot? Start here.</p>
+      <h2 class="h1">Stop shopping the aisles. <em>We’ll have it ready, or at your door.</em></h2>
+      <p class="sub" id="hero-sub">Kyle works inside your Restaurant Depot, helping members switch to online ordering. You order on RestaurantDepot.com, and SupplyNow's team selects every item and has it <b id="hero-how">ready for you at the Cleveland Restaurant Depot</b>. No aisles, no carts, no waiting in line.</p>
+      <div class="pills">
+        <a class="pill yellow" href="#start">Get set up with Kyle <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="pill" href="https://www.restaurantdepot.com" target="_blank" rel="noopener">Order on RestaurantDepot.com ↗</a>
+      </div>
+    </div>
+  </div>
+  <div class="tune">
+    <div class="wrap">
+      <span class="label">Tune this site</span>
+      <p class="sentence">I run a
+        <span class="pick"><select id="t-who" aria-label="Type of business">
+          <option value="restaurant">restaurant</option>
+          <option value="catering kitchen">catering kitchen</option>
+          <option value="food truck">food truck</option>
+          <option value="deli or market">deli or market</option>
+          <option value="school or institution">school or institution</option>
+        </select></span>
+        and want my order
+        <span class="pick"><select id="t-type" aria-label="Pickup or delivery">
+          <option value="pickup">ready for pickup</option>
+          <option value="delivery">delivered</option>
+        </select></span>
+        from the
+        <span class="pick"><select id="t-where" aria-label="Restaurant Depot location"><option value="Cleveland">Cleveland</option><option value="Akron">Akron</option><option value="Columbus">Columbus</option><option value="Indianapolis">Indianapolis</option><option value="Pittsburgh">Pittsburgh</option><option value="Wilkes-Barre">Wilkes-Barre</option><option value="Troy">Troy</option><option value="Ypsilanti">Ypsilanti</option><option value="Dearborn">Dearborn</option></select></span>
+        Restaurant Depot.
+      </p>
+      <button class="reset" type="button" id="t-reset">Reset</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ways">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <p class="eyebrow">Two ways to get your order</p>
+      <h2>Hand us the shopping. Choose how it gets to you.</h2>
+      <p class="lede">Every online order starts on RestaurantDepot.com, and our team selects and prepares it inside the depot. At checkout you choose pickup or delivery. Here is what changes from shopping in-store.</p>
+    </div>
+    <div class="ways" data-reveal>
+      <article class="way today">
+        <div class="way-top"><span class="ic"><svg viewBox="0 0 32 32"><path d="M4 6h3l3 14h14l3-10H9"/><circle cx="12" cy="25" r="2"/><circle cx="22" cy="25" r="2"/></svg></span><div><span class="tag">How most members shop today</span><h3>In-store</h3></div></div>
+        <p class="what">You do every step yourself, and it all comes out of your day.</p>
+        <ul class="chores">
+          <li>Drive to the depot and park</li>
+          <li>Walk the aisles and hunt for items</li>
+          <li>Load the cart and the flatbed</li>
+          <li>Wait in line to check out</li>
+          <li>Load your vehicle, drive back, unload</li>
+        </ul>
+        <p class="arrow">Online ordering hands these steps to us →</p>
+      </article>
+      <article class="way" id="way-pickup">
+        <div class="way-top"><span class="ic"><svg viewBox="0 0 32 32"><path d="M5 12h22l-2 15H7z"/><path d="M11 12V9a5 5 0 0 1 10 0v3"/></svg></span><div><span class="tag">Fulfillment type 1</span><h3>Pickup</h3></div></div>
+        <p class="what">Your order is selected, checked and staged before you arrive. You come to the depot and leave with it.</p>
+        <ol class="flow">
+          <li><b>Order online</b>Shop RestaurantDepot.com and choose pickup, with the date and time that suit you.</li>
+          <li><b>We pull it</b>Our selectors pick every item on your order, cold and frozen kept in temperature.</li>
+          <li><b>It's waiting</b>Your order is staged and ready when you arrive. Grab it and get back to work.</li>
+        </ol>
+        <div class="best"><span class="tag">Best for</span><p>Owners already passing the depot, smaller or last-minute orders, and anyone who wants their order in hand today.</p></div>
+        <ul class="gains"><li>Skip the aisles, carts and lines</li><li>No more hunting for out-of-place items</li><li>In and out, with no time lost in the aisles</li></ul>
+      </article>
+      <article class="way" id="way-delivery">
+        <div class="way-top"><span class="ic"><svg viewBox="0 0 32 32"><path d="M3 21V10h14v11M17 14h6l4 4v3h-3"/><circle cx="9" cy="23" r="2.5"/><circle cx="22" cy="23" r="2.5"/></svg></span><div><span class="tag">Fulfillment type 2</span><h3>Delivery</h3></div></div>
+        <p class="what">Your order is selected, loaded and brought to your door on SupplyNow trucks. Nobody on your team leaves the building.</p>
+        <ol class="flow">
+          <li><b>Order online</b>Shop RestaurantDepot.com and choose delivery at checkout.</li>
+          <li><b>We pull and load it</b>Selected, checked and loaded onto temperature-controlled trucks.</li>
+          <li><b>At your door</b>Delivered to your business with proof of delivery, cold chain intact.</li>
+        </ol>
+        <div class="best"><span class="tag">Best for</span><p>Busy kitchens, bigger and recurring orders, and teams that can't spare a person or a vehicle for the depot run.</p></div>
+        <ul class="gains"><li>Your staff stays in the kitchen</li><li>No vehicle, fuel or loading on your end</li><li>Same days, same window, week after week</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="start">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <p class="eyebrow">Getting started</p>
+      <h2>From first visit to first order. Kyle walks you through it.</h2>
+      <p class="lede">Everything you need to do, in order. Kyle can do most of it with you right there in the store, or over the phone.</p>
+    </div>
+    <ol class="steps" data-reveal>
+      <li><b>Be a Restaurant Depot member</b><p>Membership is free for qualifying businesses. Apply online, then finish at your depot with a sales tax license or resale certificate, or a business license, plus proof you can buy for the business.</p><a href="https://www.restaurantdepot.com/membership" target="_blank" rel="noopener">Membership sign-up ↗</a></li>
+      <li><b>Create your online account</b><p>Set up your account on RestaurantDepot.com or the app with your membership. Find Kyle in the depot and he'll set it up with you on your phone in a few minutes.</p><a href="#ask">Get help with sign-up →</a></li>
+      <li><b>Place your first order</b><p>Build your list, pick your depot, and choose pickup or delivery at checkout. Save your list so the next order takes minutes.</p><a href="https://www.restaurantdepot.com" target="_blank" rel="noopener">Start an order ↗</a></li>
+      <li><b>Kyle follows up</b><p>After your first order Kyle checks in: what went well, what to fix, and how to set up repeat orders that fit your week.</p><a href="#ask">Talk to Kyle →</a></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="value">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <p class="eyebrow">Why order online with us</p>
+      <h2>Your time back, and an order you can count on.</h2>
+    </div>
+    <div class="cards" data-reveal>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 9v7l5 3"/></svg></span><h3>Hours back every week</h3><p>The shopping, loading and driving come off your plate. That time goes back into prep, service and running the business.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M8 3h12l6 6v20H8z"/><path d="M20 3v6h6M12 19l3 3 6-7"/></svg></span><h3>Picked by people who know the store</h3><p>Trained selectors work your depot every day. They know where everything is and pick to your list.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M13 19V6a3 3 0 0 1 6 0v13a5 5 0 1 1-6 0z"/><path d="M16 11v10"/><path d="M23 8h4M23 12h3M23 16h4"/></svg></span><h3>Cold chain kept</h3><p>Refrigerated and frozen product is handled to HACCP food-safety standards, from the shelf to pickup or to your door.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M6 12a10 10 0 0 1 18-3M26 20a10 10 0 0 1-18 3"/><path d="M24 4v5h-5M8 28v-5h5"/></svg></span><h3>Built for repeat orders</h3><p>Saved lists and a regular rhythm turn your weekly restock into a few minutes online.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><path d="M16 29s9-8.5 9-15a9 9 0 0 0-18 0c0 6.5 9 15 9 15z"/><circle cx="16" cy="14" r="3.2"/></svg></span><h3>A team inside your depot</h3><p>SupplyNow works inside the Restaurant Depot locations we serve, so help is in the building when you need it.</p></article>
+      <article class="card"><span class="ic"><svg viewBox="0 0 32 32"><circle cx="16" cy="11" r="5"/><path d="M6 28a10 10 0 0 1 20 0"/></svg></span><h3>One person to call</h3><p>Kyle handles set-up, questions and anything that goes sideways. Call, text or email and a person answers.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="locations">
+  <div class="wrap split top">
+    <div data-reveal>
+      <p class="eyebrow">Where we fulfill</p>
+      <h2>Nine Restaurant Depot locations. Four states.</h2>
+      <p class="lede">Pickup and delivery orders placed on RestaurantDepot.com at these depots are selected and fulfilled by SupplyNow.</p>
+    </div>
+    <div class="states" data-reveal><div class="state"><span class="tag">Ohio</span><ul><li>Cleveland</li><li>Akron</li><li>Columbus</li></ul></div><div class="state"><span class="tag">Indiana</span><ul><li>Indianapolis</li></ul></div><div class="state"><span class="tag">Pennsylvania</span><ul><li>Pittsburgh</li><li>Wilkes-Barre</li></ul></div><div class="state"><span class="tag">Michigan</span><ul><li>Troy</li><li>Ypsilanti</li><li>Dearborn</li></ul></div></div>
+  </div>
+</section>
+
+<section class="section" id="resources">
+  <div class="wrap">
+    <div class="head" data-reveal>
+      <p class="eyebrow">Resources</p>
+      <h2>Everything you need, in one place.</h2>
+    </div>
+    <div class="res" data-reveal>
+      <a href="https://www.restaurantdepot.com/membership" target="_blank" rel="noopener"><b>Become a member</b><span>Free membership for qualifying businesses, and what to bring to the depot.</span><i>restaurantdepot.com ↗</i></a>
+      <a href="https://www.restaurantdepot.com" target="_blank" rel="noopener"><b>Shop and order online</b><span>Browse, build saved lists and check out with pickup or delivery.</span><i>restaurantdepot.com ↗</i></a>
+      <a href="https://www.restaurantdepot.com/resources/click-collect" target="_blank" rel="noopener"><b>How online pickup works</b><span>Restaurant Depot's guide to ordering online and collecting at the depot.</span><i>restaurantdepot.com ↗</i></a>
+      <a href="https://www.restaurantdepot.com/customer-service/faq's" target="_blank" rel="noopener"><b>Restaurant Depot FAQ</b><span>Membership, accounts and store questions, answered by Restaurant Depot.</span><i>restaurantdepot.com ↗</i></a>
+      <a href="#ask"><b>One-on-one set-up help</b><span>Kyle can walk you through sign-up, your first order and saved lists.</span><i>Ask Kyle →</i></a>
+      <a href="../"><b>More about SupplyNow</b><span>Our team, trucks and tracking, from our COO Mike Cook.</span><i>supplynow ↗</i></a>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="who">
+  <div class="wrap split">
+    <div data-reveal>
+      <p class="eyebrow">Who is SupplyNow?</p>
+      <h2>The team behind your online order.</h2>
+      <p class="lede">SupplyNow runs online order fulfillment at nine Restaurant Depot locations in Ohio, Indiana, Pennsylvania and Michigan. When you order on RestaurantDepot.com, our people select and prepare it in the store, then stage it for pickup or deliver it on our own trucks.</p>
+      <p class="lede">Your membership, account and products are with Restaurant Depot. Getting your order picked, ready and to you is what we do.</p>
+    </div>
+    <div class="record" data-reveal>
+      <span class="flag">SupplyNow</span>
+      <div class="top"><b>Online order fulfillment</b><span>Est. Cleveland, OH</span></div>
+      <div class="cells">
+        <div><span class="tag">Locations</span><b>9 depots</b></div>
+        <div><span class="tag">States</span><b>OH · IN · PA · MI</b></div>
+        <div><span class="tag">Fulfillment</span><b>Pickup · Delivery</b></div>
+        <div><span class="tag">Product</span><b>Frozen · Chilled · Dry</b></div>
+      </div>
+      <p class="notes">Selection, preparation and delivery by SupplyNow's own team and trucks.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="wrap split top">
+    <div data-reveal>
+      <p class="eyebrow">Common questions</p>
+      <h2>Quick answers.</h2>
+      <p class="lede">Don't see yours? Ask Kyle directly.</p>
+      <div class="pills" style="margin-top:32px">
+        <a class="pill solid" href="tel:+13305238748">Call 330-523-8748</a>
+        <a class="pill" href="mailto:kyle@supplynow.org">Email Kyle</a>
+      </div>
+    </div>
+    <div class="faq" data-reveal>
+      <details><summary>Who is SupplyNow, and how are you connected to Restaurant Depot?</summary><p>SupplyNow is the team that selects, prepares and fulfills online orders at nine Restaurant Depot locations. You order and keep your account with Restaurant Depot; we pick your order and get it to you.</p></details>
+      <details><summary>Do I need a Restaurant Depot membership?</summary><p>Yes. Online orders are placed under your Restaurant Depot membership, which is free for qualifying businesses. See "Getting started" above for what to bring.</p></details>
+      <details><summary>How do I place an order?</summary><p>On RestaurantDepot.com or the app. Choose your depot, build your list, and pick pickup or delivery at checkout. Kyle can walk you through your first one.</p></details>
+      <details><summary>Pickup or delivery: which is right for me?</summary><p>Pickup suits owners who pass the depot anyway or need something today. Delivery suits busy kitchens, larger and recurring orders, and teams without a spare person or vehicle. You choose each time you check out.</p></details>
+      <details><summary>Do you keep frozen and refrigerated items cold?</summary><p>Yes. Cold and frozen product is handled to HACCP food-safety standards for both pickup and delivery.</p></details>
+      <details><summary>Which locations do you serve?</summary><p>Cleveland, Akron and Columbus, Ohio; Indianapolis, Indiana; Pittsburgh and Wilkes-Barre, Pennsylvania; and Troy, Ypsilanti and Dearborn, Michigan.</p></details>
+      <details><summary>Something's wrong with my order. Who do I contact?</summary><p>Kyle. Call or text 330-523-8748 or email kyle@supplynow.org with your order details and he'll make it right with the team.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="ask">
+  <div class="wrap split top">
+    <div data-reveal>
+      <p class="eyebrow">Ask Kyle</p>
+      <h2>Questions, set-up help, or something we should know.</h2>
+      <p class="lede">Send it here and it goes straight to Kyle's inbox. He follows up within 24 hours.</p>
+      <p class="lede" style="font-size:16px">Prefer to talk? <a href="tel:+13305238748"><b>Call or text 330-523-8748</b></a></p>
+    </div>
+    <form class="form" id="ask-form" aria-label="Email Kyle" data-reveal>
+      <div class="field">
+        <label for="topic">What can Kyle help with?</label>
+        <select id="topic">
+          <option>Help setting up my online account</option>
+          <option>Questions about pickup</option>
+          <option>Questions about delivery</option>
+          <option>Help with an order</option>
+          <option>Setting up repeat orders</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="biz">Business name</label><input id="biz" type="text" autocomplete="organization"></div>
+        <div class="field"><label for="depot">Your Restaurant Depot</label><select id="depot"><option value="Cleveland">Cleveland</option><option value="Akron">Akron</option><option value="Columbus">Columbus</option><option value="Indianapolis">Indianapolis</option><option value="Pittsburgh">Pittsburgh</option><option value="Wilkes-Barre">Wilkes-Barre</option><option value="Troy">Troy</option><option value="Ypsilanti">Ypsilanti</option><option value="Dearborn">Dearborn</option></select></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="ftype">Pickup or delivery</label><select id="ftype"><option>Pickup</option><option>Delivery</option><option>Not sure yet</option></select></div>
+        <div class="field"><label for="order">Order # (if about an order)</label><input id="order" type="text"></div>
+      </div>
+      <div class="field"><label for="msg">Your question or details</label><textarea id="msg" required placeholder="What you need help with, your usual order days, anything we should know."></textarea></div>
+      <div class="field"><label for="from">Your name and phone or email</label><input id="from" type="text" autocomplete="name"></div>
+      <button type="submit" class="pill solid">Email Kyle <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="hint2">Opens your email app with the message ready to send to kyle@supplynow.org.</p>
+      <p id="sent" role="status">Your message is ready to send.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <img src="../assets/supplynow-wordmark-light.png" alt="SupplyNow" width="438" height="67" style="height:24px;width:auto">
+        <p style="margin-top:18px">Online order pickup and delivery at nine Restaurant Depot locations in Ohio, Indiana, Pennsylvania and Michigan.</p>
+      </div>
+      <div>
+        <h4>Kyle Kuczynski</h4>
+        <a href="tel:+13305238748">330-523-8748</a>
+        <a href="sms:+13305238748">Text Kyle</a>
+        <a href="mailto:kyle@supplynow.org">kyle@supplynow.org</a>
+      </div>
+      <div>
+        <h4>Restaurant Depot</h4>
+        <a href="https://www.restaurantdepot.com" target="_blank" rel="noopener">Order online</a>
+        <a href="https://www.restaurantdepot.com/membership" target="_blank" rel="noopener">Membership</a>
+        <a href="https://www.restaurantdepot.com/customer-service/faq's" target="_blank" rel="noopener">Their FAQ</a>
+      </div>
+      <div>
+        <h4>On this page</h4>
+        <a href="#ways">Pickup &amp; delivery</a>
+        <a href="#start">Getting started</a>
+        <a href="#locations">Locations</a>
+        <a href="../">About SupplyNow</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="yr">2026</span> Supply Now Inc.</span>
+      <span>SupplyNow is an independent company that fulfills online orders at the Restaurant Depot locations listed. Restaurant Depot is a trademark of its owner.</span>
+    </div>
+  </div>
+</footer>
+
+<nav class="dock" aria-label="Quick actions">
+  <a class="pill" href="tel:+13305238748">Call</a>
+  <a class="pill" href="sms:+13305238748">Text</a>
+  <a class="pill yellow" href="#ask">Ask Kyle</a>
+</nav>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); }, root = document.documentElement;
+  $("yr").textContent = new Date().getFullYear();
+
+  $("theme").addEventListener("click", function(){
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("sn-kyle-theme", next); } catch (e) {}
+  });
+
+  var ov = $("overlay"), q = $("q"), items = [].slice.call(document.querySelectorAll("#results li"));
+  function open(s){ ov.classList.add("open"); q.value = ""; filter(); (s ? q : ov.querySelector("#results a")).focus(); }
+  function close(){ ov.classList.remove("open"); }
+  function filter(){ var v = q.value.trim().toLowerCase(); items.forEach(function(li){ li.hidden = v && li.textContent.toLowerCase().indexOf(v) < 0; }); }
+  $("open-search").addEventListener("click", function(){ open(true); });
+  $("open-menu").addEventListener("click", function(){ open(false); });
+  $("close-overlay").addEventListener("click", close);
+  q.addEventListener("input", filter);
+  q.addEventListener("keydown", function(e){ if (e.key === "Enter") { var a = ov.querySelector("#results li:not([hidden]) a"); if (a) a.click(); } });
+  ov.addEventListener("click", function(e){ if (e.target === ov || e.target.closest("#results a")) close(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") close(); });
+
+  // tune this site: rewrites the hero line, highlights the matching fulfillment type, pre-fills the form
+  var tw = $("t-who"), tt = $("t-type"), tl = $("t-where");
+  var meter = document.createElement("span");
+  meter.style.cssText = "position:absolute;visibility:hidden;white-space:pre;left:-9999px";
+  document.body.appendChild(meter);
+  function fit(){
+    [tw, tt, tl].forEach(function(s){
+      var cs = getComputedStyle(s); meter.style.font = cs.font; meter.style.letterSpacing = cs.letterSpacing;
+      meter.textContent = s.options[s.selectedIndex].text;
+      s.style.width = Math.ceil(meter.getBoundingClientRect().width + 38) + "px";
+    });
+  }
+  function tune(){
+    var pick = tt.value === "pickup";
+    $("hero-how").textContent = pick ? "ready for you at the " + tl.value + " Restaurant Depot" : "delivered from the " + tl.value + " Restaurant Depot to your " + tw.value;
+    $("way-pickup").classList.toggle("on", pick);
+    $("way-delivery").classList.toggle("on", !pick);
+    $("depot").value = tl.value;
+    $("ftype").value = pick ? "Pickup" : "Delivery";
+  }
+  [tw, tt, tl].forEach(function(s){ s.addEventListener("change", function(){ tune(); fit(); }); });
+  $("t-reset").addEventListener("click", function(){ tw.selectedIndex = 0; tt.selectedIndex = 0; tl.selectedIndex = 0; tune(); fit(); });
+  window.addEventListener("resize", fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  fit(); tune();
+
+  var els = [].slice.call(document.querySelectorAll("[data-reveal]"));
+  if (!("IntersectionObserver" in window)) els.forEach(function(e){ e.classList.add("in"); });
+  else {
+    var io = new IntersectionObserver(function(en){ en.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }); }, { rootMargin: "0px 0px -8% 0px", threshold: .1 });
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  $("ask-form").addEventListener("submit", function(e){
+    e.preventDefault();
+    var v = function(id){ return $(id).value.trim(); };
+    var lines = ["Topic: " + v("topic")];
+    if (v("biz")) lines.push("Business: " + v("biz"));
+    lines.push("Restaurant Depot: " + v("depot"), "Fulfillment: " + v("ftype"));
+    if (v("order")) lines.push("Order #: " + v("order"));
+    lines.push("", v("msg"));
+    if (v("from")) lines.push("", "From: " + v("from"));
+    location.href = "mailto:kyle@supplynow.org?subject=" + encodeURIComponent(v("topic") + (v("biz") ? " — " + v("biz") : "")) + "&body=" + encodeURIComponent(lines.join("\n"));
+    $("sent").style.display = "block";
+  });
+})();
+</script>
+
+<script>
+/* Contour field, same engine as Mike's page, recolored: navy and royal blue at the low ground,
+   through sky and ice blue, into warm yellow and amber on the high ground. */
+(function(){
+  var cv = document.getElementById("field"), hero = cv && cv.parentNode;
+  if (!cv || !cv.getContext) return;
+  var ctx = cv.getContext("2d");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var perm = new Uint8Array(512), p = [], s = 13, i, j, t0;
+  for (i = 0; i < 256; i++) p[i] = i;
+  for (i = 255; i > 0; i--) { s = (s * 16807) % 2147483647; j = s % (i + 1); t0 = p[i]; p[i] = p[j]; p[j] = t0; }
+  for (i = 0; i < 512; i++) perm[i] = p[i & 255];
+  function fade(t){ return t * t * (3 - 2 * t); }
+  function vn(x, y){
+    var xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi, X = xi & 255, Y = yi & 255;
+    var a = perm[perm[X] + Y] / 255, b = perm[perm[X + 1] + Y] / 255, c = perm[perm[X] + Y + 1] / 255, d = perm[perm[X + 1] + Y + 1] / 255;
+    var u = fade(xf), v = fade(yf);
+    return a + (b - a) * u + (c - a) * v + (a - b - c + d) * u * v;
+  }
+  var W = 0, H = 0, CELL = 11, cols = 0, rows = 0, vals = null, time = 0, wells = [], last = 0, raf = 0, visible = true, lastPt = null;
+  function size(){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = hero.clientWidth; H = hero.clientHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    CELL = W < 700 ? 9 : 11;
+    cols = Math.ceil(W / CELL) + 1; rows = Math.ceil(H / CELL) + 1;
+    vals = new Float32Array(cols * rows);
+  }
+  function sample(){
+    var now = performance.now();
+    wells = wells.filter(function(w){ return now - w.t < 3200; });
+    for (var r = 0; r < rows; r++) {
+      var y = r * CELL;
+      for (var c = 0; c < cols; c++) {
+        var x = c * CELL;
+        var v = vn(x * .0032 + time * .018, y * .0032 - time * .006) * .62 + vn(x * .0075 - time * .012, y * .0075 + 9.3) * .28 + vn(x * .019 + 3.1, y * .019 + time * .01) * .1;
+        v += (x / W) * .28 + (y / H) * .42;
+        for (var k = 0; k < wells.length; k++) {
+          var w = wells[k], dx = x - w.x, dy = y - w.y, life = 1 - (now - w.t) / 3200;
+          v -= .22 * life * life * Math.exp(-(dx * dx + dy * dy) / 7200);
+        }
+        vals[r * cols + c] = v;
+      }
+    }
+  }
+  // low to high: navy, royal blue, sky, ice, pale gold, yellow, amber (share of drawn line in each)
+  var BANDS = [[.12,[44,74,140,.8]],[.2,[45,105,214,.9]],[.18,[90,167,255,.9]],[.12,[170,206,255,.85]],
+               [.1,[236,224,170,.85]],[.17,[255,201,60,.95]],[.11,[242,165,22,.9]]];
+  var counts = null, colors = null, segs = 0;
+  function assign(L){
+    var total = 0, n, cum = 0, out = [];
+    for (n = 0; n < L; n++) total += counts ? counts[n] : 1;
+    for (n = 0; n < L; n++) {
+      var c = counts ? counts[n] : 1, mid = (cum + c / 2) / total, acc = 0, b = 0;
+      for (b = 0; b < BANDS.length - 1; b++) { acc += BANDS[b][0]; if (mid <= acc) break; }
+      var k = BANDS[b][1]; out[n] = "rgba(" + k[0] + "," + k[1] + "," + k[2] + "," + k[3] + ")"; cum += c;
+    }
+    return out;
+  }
+  function seg(a, b){ ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); segs++; }
+  function draw(){
+    sample();
+    ctx.clearRect(0, 0, W, H);
+    var LEVELS = 26, lo = .15, hi = 1.45, step = (hi - lo) / LEVELS;
+    ctx.lineWidth = 1.3; colors = assign(LEVELS);
+    var next = new Float32Array(LEVELS);
+    for (var L = 0; L < LEVELS; L++) {
+      var iso = lo + L * step; ctx.beginPath(); segs = 0;
+      for (var r = 0; r < rows - 1; r++) {
+        for (var c = 0; c < cols - 1; c++) {
+          var a = vals[r * cols + c], b = vals[r * cols + c + 1], d = vals[(r + 1) * cols + c], e = vals[(r + 1) * cols + c + 1];
+          var idx = (a > iso ? 8 : 0) | (b > iso ? 4 : 0) | (e > iso ? 2 : 0) | (d > iso ? 1 : 0);
+          if (idx === 0 || idx === 15) continue;
+          var x = c * CELL, y = r * CELL;
+          var T = [x + CELL * (iso - a) / (b - a), y], R = [x + CELL, y + CELL * (iso - b) / (e - b)],
+              B = [x + CELL * (iso - d) / (e - d), y + CELL], Lf = [x, y + CELL * (iso - a) / (d - a)];
+          switch (idx) {
+            case 1: case 14: seg(Lf, B); break; case 2: case 13: seg(B, R); break;
+            case 3: case 12: seg(Lf, R); break; case 4: case 11: seg(T, R); break;
+            case 5: seg(Lf, T); seg(B, R); break; case 6: case 9: seg(T, B); break;
+            case 7: case 8: seg(Lf, T); break; case 10: seg(T, R); seg(Lf, B); break;
+          }
+        }
+      }
+      ctx.strokeStyle = colors[L]; ctx.stroke(); next[L] = segs;
+    }
+    counts = next;
+  }
+  function frame(ts){
+    raf = 0;
+    if (!visible || document.hidden) return;
+    if (!last || ts - last > 33) { time += last ? Math.min((ts - last) / 1000, .1) : .03; last = ts; draw(); }
+    raf = requestAnimationFrame(frame);
+  }
+  function kick(){ if (!raf && !reduce) { last = 0; raf = requestAnimationFrame(frame); } }
+  function press(x, y){
+    if (lastPt && Math.hypot(x - lastPt[0], y - lastPt[1]) < 26) return;
+    lastPt = [x, y]; wells.push({ x: x, y: y, t: performance.now() });
+    if (wells.length > 48) wells.shift();
+    if (reduce) draw();
+  }
+  hero.addEventListener("pointermove", function(e){ var r = hero.getBoundingClientRect(); press(e.clientX - r.left, e.clientY - r.top); });
+  size(); draw();
+  window.addEventListener("resize", function(){ size(); draw(); });
+  if ("IntersectionObserver" in window) new IntersectionObserver(function(e){ visible = e[0].isIntersecting; if (visible) kick(); }).observe(hero);
+  document.addEventListener("visibilitychange", kick);
+  kick();
+})();
+</script>
+</body>
+</html>
